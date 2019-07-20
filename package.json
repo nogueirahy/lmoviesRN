@@ -1,11 +1,14 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "private": true,
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "apisauce": "1.0.3",
@@ -24,7 +27,37 @@
   },
   "devDependencies": {
     "babel-preset-expo": "5.1.1",
-    "react-native-dotenv": "0.2.0"
+    "jest-expo": "33.0.2",
+    "react-hooks-testing-library": "0.6.0",
+    "react-native-dotenv": "0.2.0",
+    "react-native-testing-library": "1.11.1"
   },
-  "private": true
+  "jest": {
+    "preset": "jest-expo",
+    "collectCoverageFrom": [
+      "<rootDir>/App.js",
+      "<rootDir>/src/**/*.{js,jsx,mjs}",
+      "!<rootDir>/src/**/index.js",
+      "!<rootDir>/src/features/**/styles/*",
+      "!<rootDir>/src/components/**/styles/*",
+      "!<rootDir>/src/components/wrappers/styles/*"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/config/*"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-native|expo|@expo|react-navigation)/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
+  }
 }
