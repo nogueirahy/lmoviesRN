@@ -19,7 +19,7 @@ export const movieRequest = (state, { page }) => ({
 
 export const movieSuccess = (state, { data, totalPages }) => ({
   ...state,
-  data,
+  data: [...state.data, ...data],
   totalPages,
   isFetching: false
 });

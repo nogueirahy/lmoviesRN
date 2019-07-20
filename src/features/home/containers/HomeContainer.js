@@ -1,30 +1,68 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
-import { connect } from "react-redux";
-import { StyleSheet, ScrollView } from "react-native";
-import { Title, Text } from "react-native-paper";
+import { StyleSheet, ScrollView, FlatList } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import { Title } from "react-native-paper";
 
 import { MovieActionCreators } from "../ducks";
 import { CardMovie } from "../../../components";
+import { momentHelper } from "../../../lib";
 import { blueGreyDark } from "../../../config/colors";
 
-function HomeContainer({ movieRequest, data, totalPages }) {
+const IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
+
+function HomeContainer() {
+  const dispatch = useDispatch();
   const [page, setPage] = useState(1);
+  const [canLoadMore, setCanLoadMore] = useState(true);
+  const { data, totalPages } = useSelector(state => state.movie);
+  const isEndPage = page === totalPages;
 
   useEffect(() => {
-    movieRequest(page);
+    nextPage();
   }, []);
+
+  useEffect(() => {
+    if (isEndPage) {
+      setCanLoadMore(false);
+    }
+  }, [page, canLoadMore]);
+
+  const nextPage = useCallback(() => {
+    if (canLoadMore) {
+      dispatch(MovieActionCreators.movieRequest(page));
+      setPage(page + 1);
+    }
+  }, [page]);
+
+  function _renderItem({ item }) {
+    const { title, poster_path, vote_average, release_date } = item;
+    const imageUrl = `${IMAGE_URL}${poster_path}`;
+    const releaseDate = momentHelper.formatDate(release_date);
+    return (
+      <CardMovie
+        title={title}
+        imageUrl={imageUrl}
+        voteAverage={vote_average}
+        releaseDate={releaseDate}
+      />
+    );
+  }
 
   return (
     <ScrollView style={styles.container}>
-      <Title style={styles.title}>Upcoming</Title>
-      <CardMovie />
-      <Text>Total de Paginas {totalPages}</Text>
-      <Text>Pagina Atual {page}</Text>
-
-      {data.map(elem => (
-        <Title key={elem.title}>{elem.title}</Title>
-      ))}
+      <Title style={styles.title}>Upcoming Movies</Title>
+      <FlatList
+        contentContainerStyle={styles.content}
+        data={data}
+        keyExtractor={item => String(item.id)}
+        renderItem={_renderItem}
+        onEndReachedThreshold={0.1}
+        onEndReached={nextPage}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        testID="flatlist"
+      />
     </ScrollView>
   );
 }
@@ -40,18 +78,11 @@ const styles = StyleSheet.create({
     letterSpacing: 0.15,
     fontWeight: "500",
     paddingBottom: 16
+  },
+  content: {
+    justifyContent: "space-evenly",
+    paddingLeft: 12
   }
 });
 
-const mapStateToProps = state => ({
-  data: state.movie.data,
-  totalPages: state.movie.totalPages,
-  isFetching: state.movie.isFetching
-});
-
-const mapDispatchToProps = { ...MovieActionCreators };
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomeContainer);
+export default HomeContainer;
