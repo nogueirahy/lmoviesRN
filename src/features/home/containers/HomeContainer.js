@@ -1,20 +1,31 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+
+import { StyleSheet, ScrollView } from "react-native";
+import { Title } from "react-native-paper";
+
+import { CardMovie } from "../../../components";
+import { blueGreyDark } from "../../../config/colors";
 
 function HomeContainer() {
   return (
-    <View style={styles.container}>
-      <Text>Home app!</Text>
-    </View>
+    <ScrollView style={styles.container}>
+      <Title style={styles.title}>Upcoming</Title>
+      <CardMovie />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    paddingTop: 40,
+    backgroundColor: "#FFFFFF"
+  },
+  title: {
+    paddingLeft: 8,
+    color: blueGreyDark,
+    letterSpacing: 0.15,
+    fontWeight: "500",
+    paddingBottom: 16
   }
 });
 
