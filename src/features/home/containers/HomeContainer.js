@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
+import { connect } from "react-redux";
 import { StyleSheet, ScrollView } from "react-native";
-import { Title } from "react-native-paper";
+import { Title, Text } from "react-native-paper";
 
+import { MovieActionCreators } from "../ducks";
 import { CardMovie } from "../../../components";
 import { blueGreyDark } from "../../../config/colors";
 
-function HomeContainer() {
+function HomeContainer({ movieRequest, data, totalPages }) {
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    movieRequest(page);
+  }, []);
+
   return (
     <ScrollView style={styles.container}>
       <Title style={styles.title}>Upcoming</Title>
       <CardMovie />
+      <Text>Total de Paginas {totalPages}</Text>
+      <Text>Pagina Atual {page}</Text>
+
+      {data.map(elem => (
+        <Title key={elem.title}>{elem.title}</Title>
+      ))}
     </ScrollView>
   );
 }
@@ -29,4 +43,15 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HomeContainer;
+const mapStateToProps = state => ({
+  data: state.movie.data,
+  totalPages: state.movie.totalPages,
+  isFetching: state.movie.isFetching
+});
+
+const mapDispatchToProps = { ...MovieActionCreators };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeContainer);
