@@ -1,3 +1,4 @@
 import upcomingData from "./upcomingData";
+import renderWithRedux from "./wrapRenderWithRedux";
 
-export { upcomingData };
+export { upcomingData, renderWithRedux };

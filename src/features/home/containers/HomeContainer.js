@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 
-import { connect } from "react-redux";
 import { StyleSheet, ScrollView, FlatList } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
 import { Title } from "react-native-paper";
 
 import { MovieActionCreators } from "../ducks";
@@ -9,10 +9,13 @@ import { CardMovie } from "../../../components";
 import { momentHelper } from "../../../lib";
 import { blueGreyDark } from "../../../config/colors";
 
-export function HomeContainer({ movieRequest, data, totalPages }) {
+const IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
+
+function HomeContainer() {
+  const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [canLoadMore, setCanLoadMore] = useState(true);
-
+  const { data, totalPages } = useSelector(state => state.movie);
   const isEndPage = page === totalPages;
 
   useEffect(() => {
@@ -27,14 +30,14 @@ export function HomeContainer({ movieRequest, data, totalPages }) {
 
   const nextPage = useCallback(() => {
     if (canLoadMore) {
-      movieRequest(page);
+      dispatch(MovieActionCreators.movieRequest(page));
       setPage(page + 1);
     }
   }, [page]);
 
   function _renderItem({ item }) {
     const { title, poster_path, vote_average, release_date } = item;
-    const imageUrl = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+    const imageUrl = `${IMAGE_URL}${poster_path}`;
     const releaseDate = momentHelper.formatDate(release_date);
     return (
       <CardMovie
@@ -49,12 +52,8 @@ export function HomeContainer({ movieRequest, data, totalPages }) {
   return (
     <ScrollView style={styles.container}>
       <Title style={styles.title}>Upcoming Movies</Title>
-
       <FlatList
-        contentContainerStyle={{
-          justifyContent: "space-evenly",
-          paddingLeft: 12
-        }}
+        contentContainerStyle={styles.content}
         data={data}
         keyExtractor={item => String(item.id)}
         renderItem={_renderItem}
@@ -79,18 +78,11 @@ const styles = StyleSheet.create({
     letterSpacing: 0.15,
     fontWeight: "500",
     paddingBottom: 16
+  },
+  content: {
+    justifyContent: "space-evenly",
+    paddingLeft: 12
   }
 });
 
-const mapStateToProps = state => ({
-  data: state.movie.data,
-  totalPages: state.movie.totalPages,
-  isFetching: state.movie.isFetching
-});
-
-const mapDispatchToProps = { ...MovieActionCreators };
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomeContainer);
+export default HomeContainer;
