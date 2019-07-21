@@ -6,7 +6,6 @@ import { api } from "../../api";
 
 export function* handleMovieRequest({ page }) {
   const response = yield call(api.getUpcoming, page);
-  console.log(page)
   if (response.ok) {
     const { results, total_pages: totalPages } = response.data;
 
