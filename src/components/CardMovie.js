@@ -1,59 +1,23 @@
 import React from "react";
-import { View } from "react-native";
 
-import { Card, Chip, Text, Title } from "react-native-paper";
+import { View, StyleSheet } from "react-native";
+import { Card, Chip, Text } from "react-native-paper";
 
 import { blueGreyDark } from "../config/colors";
 
-const themeChip = {
-  roundness: 4,
-  colors: {
-    disabled: "yellow"
-  }
-};
-
 function CardMovie({ title, imageUrl, voteAverage, releaseDate }) {
   return (
-    <Card
-      elevation={4}
-      style={{
-        minWidth: 135,
-        maxWidth: 135,
-        marginHorizontal: 10,
-        marginBottom: 18
-      }}
-    >
-      <Card.Cover
-        source={{
-          uri: imageUrl
-        }}
-      />
-      <Chip
-        disabled
-        theme={themeChip}
-        style={{
-          position: "absolute",
-          bottom: "21%",
-          backgroundColor: blueGreyDark
-        }}
-        icon="star"
-      >
+    <Card elevation={4} style={styles.container}>
+      <Card.Cover source={{ uri: imageUrl }} />
+      <Chip style={styles.chip} theme={themeChip} icon="star" disabled>
         {voteAverage}
       </Chip>
       <Card.Content>
         <View>
-          <Text
-            style={{ fontWeight: "bold", textAlign: "center", marginTop: 14 }}
-            numberOfLines={1}
-            ellipsizeMode="tail"
-          >
+          <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
             {title}
           </Text>
-          <Text
-            style={{ textAlign: "center" }}
-            numberOfLines={1}
-            ellipsizeMode="tail"
-          >
+          <Text style={styles.subtitle} numberOfLines={1} ellipsizeMode="tail">
             {releaseDate}
           </Text>
         </View>
@@ -62,14 +26,33 @@ function CardMovie({ title, imageUrl, voteAverage, releaseDate }) {
   );
 }
 
-export default CardMovie;
+const themeChip = {
+  roundness: 4,
+  colors: {
+    disabled: "yellow"
+  }
+};
 
-/*
- <AirbnbRating
-            showRating
-            count={5}
-            reviews={["Terrible", "Bad", "OK", "Good", "Amazing"]}
-            defaultRating={voteAverage/2}
-            size={20}
-          />
-          */
+const styles = StyleSheet.create({
+  container: {
+    minWidth: 135,
+    maxWidth: 135,
+    marginHorizontal: 10,
+    marginBottom: 18
+  },
+  chip: {
+    position: "absolute",
+    bottom: "21%",
+    backgroundColor: blueGreyDark
+  },
+  title: {
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: 14
+  },
+  subtitle: {
+    textAlign: "center"
+  }
+});
+
+export default CardMovie;
