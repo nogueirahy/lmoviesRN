@@ -1,3 +1,3 @@
-import CardMovie from "./CardMovie";
+import CardMovie from './CardMovie';
 
 export { CardMovie };

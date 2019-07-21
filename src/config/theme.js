@@ -1,6 +1,8 @@
 import { DefaultTheme } from 'react-native-paper';
 
-import { blue, blueDark, blueLight, blueGreyDark, white, red, redLight } from './colors';
+import {
+  blue, blueDark, blueLight, blueGreyDark, white, red, redLight,
+} from './colors';
 
 const theme = {
   ...DefaultTheme,

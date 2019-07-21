@@ -2,21 +2,25 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
-    "start": "expo start",
+    "start": "expo start -c",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "lint": "eslint ./App.js src/",
+    "lint-fix": "eslint src/ --fix"
   },
   "dependencies": {
     "apisauce": "1.0.3",
     "expo": "33.0.0",
     "moment": "2.24.0",
+    "prop-types": "15.7.2",
     "react": "16.8.3",
     "react-dom": "16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "react-native-dotenv": "0.2.0",
     "react-native-paper": "2.16.0",
     "react-native-web": "0.11.4",
     "react-navigation": "3.11.1",
@@ -26,12 +30,17 @@
     "reduxsauce": "1.1.0"
   },
   "devDependencies": {
-    "babel-preset-expo": "5.1.1",
+    "babel-eslint": "10.0.2",
+    "babel-preset-expo": "5.2.0",
+    "eslint": "6.0.1",
+    "eslint-config-airbnb": "17.1.1",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-react": "7.14.2",
     "jest-expo": "33.0.2",
     "react-hooks-testing-library": "0.6.0",
-    "react-native-dotenv": "0.2.0",
     "react-native-testing-library": "1.11.1",
-    "redux-mock-store": "^1.5.3"
+    "redux-mock-store": "1.5.3"
   },
   "jest": {
     "preset": "jest-expo",
@@ -55,9 +64,9 @@
     "coverageThreshold": {
       "global": {
         "branches": 90,
-        "functions": 90,
-        "lines": 90,
-        "statements": 90
+        "functions": 55,
+        "lines": 80,
+        "statements": 70
       }
     }
   }

@@ -1,12 +1,11 @@
-import { put, call, takeLatest } from "redux-saga/effects";
+import { put, call, takeLatest } from 'redux-saga/effects';
 
-import { MovieActionCreators, MovieTypes } from "./ducks";
+import { MovieActionCreators, MovieTypes } from './ducks';
 
-import { api } from "../../api";
+import { api } from '../../api';
 
 export function* handleMovieRequest({ page }) {
   const response = yield call(api.getUpcoming, page);
-  console.log(page)
   if (response.ok) {
     const { results, total_pages: totalPages } = response.data;
 
@@ -17,5 +16,5 @@ export function* handleMovieRequest({ page }) {
 }
 
 export const homeSagas = [
-  takeLatest(MovieTypes.MOVIE_REQUEST, handleMovieRequest)
+  takeLatest(MovieTypes.MOVIE_REQUEST, handleMovieRequest),
 ];

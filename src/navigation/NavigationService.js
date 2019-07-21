@@ -1,4 +1,4 @@
-import { NavigationActions } from "react-navigation";
+import { NavigationActions } from 'react-navigation';
 
 let navigator;
 
@@ -10,8 +10,8 @@ function navigate(routeName, params) {
   navigator.dispatch(
     NavigationActions.navigate({
       routeName,
-      params
-    })
+      params,
+    }),
   );
 }
 
@@ -19,16 +19,16 @@ function setParams(key, params) {
   navigator.dispatch(
     NavigationActions.setParams({
       key,
-      params
-    })
+      params,
+    }),
   );
 }
 
 function goBack(key) {
   navigator.dispatch(
     NavigationActions.back({
-      key
-    })
+      key,
+    }),
   );
 }
 
@@ -36,5 +36,5 @@ export default {
   setTopLevelNavigator,
   navigate,
   setParams,
-  goBack
+  goBack,
 };
