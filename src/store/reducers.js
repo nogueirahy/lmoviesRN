@@ -1,9 +1,9 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
-import { movieReducer } from "../features/home/ducks";
+import { movieReducer } from '../features/home/ducks';
 
 const rootReducer = combineReducers({
-  movie: movieReducer
+  movie: movieReducer,
 });
 
 export { rootReducer };

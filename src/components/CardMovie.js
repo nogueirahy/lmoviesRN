@@ -1,23 +1,33 @@
-import React from "react";
+import React from 'react';
 
-import { View, StyleSheet } from "react-native";
-import { Card, Chip, Text } from "react-native-paper";
+import PropTypes from 'prop-types';
+import { View } from 'react-native';
+import { Card, Chip, Text } from 'react-native-paper';
+import { CardMovieStyle } from './styles';
+import { themeChip } from './styles/CardMovieStyle';
 
-import { blueGreyDark } from "../config/colors";
+const propTypes = {
+  title: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  voteAverage: PropTypes.number.isRequired,
+  releaseDate: PropTypes.string.isRequired,
+};
 
-function CardMovie({ title, imageUrl, voteAverage, releaseDate }) {
+function CardMovie({
+  title, imageUrl, voteAverage, releaseDate,
+}) {
   return (
-    <Card elevation={4} style={styles.container}>
+    <Card elevation={4} style={CardMovieStyle.container}>
       <Card.Cover source={{ uri: imageUrl }} />
-      <Chip style={styles.chip} theme={themeChip} icon="star" disabled>
+      <Chip style={CardMovieStyle.chip} theme={themeChip} icon="star" disabled>
         {voteAverage}
       </Chip>
       <Card.Content>
         <View>
-          <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
+          <Text style={CardMovieStyle.title} numberOfLines={1} ellipsizeMode="tail">
             {title}
           </Text>
-          <Text style={styles.subtitle} numberOfLines={1} ellipsizeMode="tail">
+          <Text style={CardMovieStyle.subtitle} numberOfLines={1} ellipsizeMode="tail">
             {releaseDate}
           </Text>
         </View>
@@ -26,33 +36,6 @@ function CardMovie({ title, imageUrl, voteAverage, releaseDate }) {
   );
 }
 
-const themeChip = {
-  roundness: 4,
-  colors: {
-    disabled: "yellow"
-  }
-};
-
-const styles = StyleSheet.create({
-  container: {
-    minWidth: 135,
-    maxWidth: 135,
-    marginHorizontal: 10,
-    marginBottom: 18
-  },
-  chip: {
-    position: "absolute",
-    bottom: "21%",
-    backgroundColor: blueGreyDark
-  },
-  title: {
-    fontWeight: "bold",
-    textAlign: "center",
-    marginTop: 14
-  },
-  subtitle: {
-    textAlign: "center"
-  }
-});
+CardMovie.propTypes = propTypes;
 
 export default CardMovie;

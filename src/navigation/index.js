@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import NavigationStack from "./NavigationStack";
-import NavigationService from "./NavigationService";
+import NavigationStack from './NavigationStack';
+import NavigationService from './NavigationService';
 
 function AppNavigator() {
   return (
     <NavigationStack
-      ref={navigatorRef => {
+      ref={(navigatorRef) => {
         NavigationService.setTopLevelNavigator(navigatorRef);
       }}
     />

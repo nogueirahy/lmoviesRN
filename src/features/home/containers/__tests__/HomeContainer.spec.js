@@ -1,40 +1,40 @@
-import HomeContainer from "../HomeContainer";
-import { renderWithRedux, upcomingData } from "../../../../__mocks__";
+import HomeContainer from '../HomeContainer';
+import { renderWithRedux, upcomingData } from '../../../../__mocks__';
 
-describe("HomeContainer", () => {
+describe('HomeContainer', () => {
   let wrap;
+  let onEndReached;
 
   const state = {
     movie: {
       movieRequest: jest.fn(),
       totalPages: 2,
       isFetching: false,
-      data: upcomingData
-    }
+      data: upcomingData,
+    },
   };
 
   beforeEach(() => {
     wrap = renderWithRedux(HomeContainer, state);
-    onEndReached = () =>
-      wrap.act(() => {
-        wrap.getByTestId("flatlist")._fiber.stateNode.props.onEndReached();
-      });
+    onEndReached = () => wrap.act(() => {
+      wrap.getByTestId('flatlist')._fiber.stateNode.props.onEndReached();
+    });
   });
 
   afterEach(() => {
     state.movie.movieRequest.mockClear();
   });
 
-  describe("Quando montar o componente", () => {
+  describe('Quando montar o componente', () => {
     let expectAction;
 
-    it("Deve chamar a action de requisição", () => {
+    it('Deve chamar a action de requisição', () => {
       const action = wrap.store.getActions();
-      expectAction = { type: "MOVIE_REQUEST", page: 1 };
+      expectAction = { type: 'MOVIE_REQUEST', page: 1 };
       expect(action.length).toEqual(1);
       expect(action[0]).toEqual(expectAction);
     });
-    it("Quando atingir todos os items caso tenha mais paginas deve chamar a action de requisição", () => {
+    it('Quando atingir todos os items caso tenha mais paginas deve chamar a action de requisição', () => {
       onEndReached();
       onEndReached();
       const action = wrap.store.getActions();

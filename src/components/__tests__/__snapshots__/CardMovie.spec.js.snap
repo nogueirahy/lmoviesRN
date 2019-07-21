@@ -61,7 +61,7 @@ exports[`CardMovie deve renderizar corretamente 1`] = `
         }
         source={
           Object {
-            "uri": undefined,
+            "uri": "https://image.tmdb.org/t/p/w500/dzBtMocZuJbjLOXvrl4zGYigDzh.jpg\\"",
           }
         }
         style={
@@ -178,7 +178,9 @@ exports[`CardMovie deve renderizar corretamente 1`] = `
                 ],
               ]
             }
-          />
+          >
+            7.7
+          </Text>
         </View>
       </View>
     </View>
@@ -214,7 +216,9 @@ exports[`CardMovie deve renderizar corretamente 1`] = `
               },
             ]
           }
-        />
+        >
+          The Lion King
+        </Text>
         <Text
           ellipsizeMode="tail"
           numberOfLines={1}
@@ -231,7 +235,9 @@ exports[`CardMovie deve renderizar corretamente 1`] = `
               },
             ]
           }
-        />
+        >
+          Jul 20th 19
+        </Text>
       </View>
     </View>
   </View>

@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react';
 
-import { render, act } from "react-native-testing-library";
+import { render, act } from 'react-native-testing-library';
 
-import { Provider } from "react-redux";
-import configureMockStore from "redux-mock-store";
+import { Provider } from 'react-redux';
+import configureMockStore from 'redux-mock-store';
 
-export default function(Component, state = {}) {
+export default function (Component, state = {}) {
   const mockStore = configureMockStore();
   const store = mockStore(state);
   return {
     ...render(
       <Provider store={store}>
-        <Component />}
-      </Provider>
+        <Component />
+      </Provider>,
     ),
     store,
-    act
+    act,
   };
 }
