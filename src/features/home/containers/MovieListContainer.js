@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, View } from 'react-native';
+import { FlatList } from 'react-native';
 
 import { Title } from 'react-native-paper';
 
@@ -9,12 +9,21 @@ import { CardMovie } from '../../../components';
 import { HomeStyle } from './styles';
 
 const propTypes = {
+  title: PropTypes.string.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object),
+  nextPage: PropTypes.func,
+  onPress: PropTypes.func,
 };
 
 const defaultProps = {
+  data: [],
+  nextPage: () => { },
+  onPress: () => { },
 };
 
-function MovieListContainer({ title, data, onPress }) {
+function MovieListContainer({
+  title, data, nextPage, onPress,
+}) {
   function renderItem(item) {
     const {
       id, voteAverage, title: movieTitle, releaseDate, posterUrl,
@@ -41,6 +50,8 @@ function MovieListContainer({ title, data, onPress }) {
         data={data}
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => renderItem(item)}
+        onEndReached={nextPage}
+        onEndReachedThreshold={0.1}
         horizontal
         showsHorizontalScrollIndicator={false}
         testID="movieList"

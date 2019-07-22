@@ -1,39 +1,30 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView } from 'react-native';
 
 import { useSelector, useDispatch } from 'react-redux';
 
+import { useNextPage } from '../../../hooks';
 import MovieList from './MovieListContainer';
 import { MovieActionCreators } from '../ducks';
-import { moviesDataSelector, moviesTotalPagesSelector } from '../selectors';
 import { navigateToDetails } from '../../../navigation/NavigationHelpers';
 import { HomeStyle } from './styles';
 
 function HomeContainer() {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
-  const [canLoadMore, setCanLoadMore] = useState(true);
-  const data = useSelector(moviesDataSelector);
-  const totalPages = useSelector(moviesTotalPagesSelector);
-
-  const isEndPage = page === totalPages;
-
-  const nextPage = useCallback(() => {
-    if (canLoadMore) {
-      dispatch(MovieActionCreators.movieRequest(page));
-      setPage(page + 1);
-    }
-  }, [page]);
+  const {
+    upcomingData, upcomingTotalPages,
+    popularData, popularTotalPages,
+    topRatedData, topRatedTotalPages,
+  } = useSelector(state => state.movie);
+  const upcomingNextPage = useNextPage(MovieActionCreators.upcomingRequest, upcomingTotalPages);
+  const popularNextPage = useNextPage(MovieActionCreators.popularRequest, popularTotalPages);
+  const topRatedNextPage = useNextPage(MovieActionCreators.topRatedRequest, topRatedTotalPages);
 
   useEffect(() => {
-    nextPage();
+    upcomingNextPage();
+    popularNextPage();
+    topRatedNextPage();
   }, []);
-
-  useEffect(() => {
-    if (isEndPage) {
-      setCanLoadMore(false);
-    }
-  }, [page, canLoadMore]);
 
   function doNavigateToDetails(id) {
     dispatch(MovieActionCreators.selectedMovie(id));
@@ -42,7 +33,9 @@ function HomeContainer() {
 
   return (
     <ScrollView style={HomeStyle.container}>
-      <MovieList title="Upcoming Movies" data={data} onPress={doNavigateToDetails} />
+      <MovieList title="Upcoming Movies" data={upcomingData} nextPage={upcomingNextPage} onPress={doNavigateToDetails} />
+      <MovieList title="Popular" data={popularData} nextPage={popularNextPage} onPress={doNavigateToDetails} />
+      <MovieList title="Top Rated" data={topRatedData} nextPage={topRatedNextPage} onPress={doNavigateToDetails} />
     </ScrollView>
   );
 }
