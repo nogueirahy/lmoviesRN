@@ -1,18 +1,28 @@
 import { StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
+
+import { color } from '../../../../config/theme';
 
 export default StyleSheet.create({
   container: {
-    paddingTop: 40,
-    backgroundColor: '#232931',
+    backgroundColor: color.background,
+    paddingTop: Constants.statusBarHeight + 12,
   },
   title: {
-    paddingLeft: 8,
+    paddingLeft: 12,
     letterSpacing: 0.15,
     fontWeight: '500',
     paddingBottom: 16,
   },
-  content: {
+  contentFlatlist: {
     justifyContent: 'space-evenly',
-    paddingLeft: 12,
+    paddingLeft: 16,
+  },
+  contentDetailBody: {
+    flex: 1,
+    backgroundColor: color.background,
+    alignItems: 'center',
+    paddingTop: 4,
+    paddingHorizontal: 16,
   },
 });

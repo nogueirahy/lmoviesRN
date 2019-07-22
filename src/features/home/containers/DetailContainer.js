@@ -1,40 +1,16 @@
 import React, { useEffect } from 'react';
+import { View, ScrollView, FlatList } from 'react-native';
 
-import {
-  View, StyleSheet, ScrollView, FlatList,
-} from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
 import { Title, Paragraph } from 'react-native-paper';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { momentHelper, themoviedbHelper } from '../../../lib';
 import { CardMovie } from '../../../components';
 import { GenreChip, DetailHeader } from '../presentation';
 import { MovieActionCreators, MovieDetailActionCreators } from '../ducks';
 import { movieDetailDataSelector } from '../selectors';
+import { HomeStyle } from './styles';
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#232931',
-  },
-  title: {
-    paddingTop: 12,
-    paddingLeft: 8,
-    letterSpacing: 0.15,
-    fontWeight: '500',
-    paddingBottom: 16,
-  },
-  content: {
-    flex: 1,
-    backgroundColor: '#232931',
-    alignItems: 'center',
-    paddingTop: 4,
-    paddingHorizontal: 16,
-  },
-  contentFlatlist: {
-    justifyContent: 'space-evenly',
-    paddingLeft: 12,
-  },
-});
 
 function DetailContainer() {
   const dispatch = useDispatch();
@@ -63,27 +39,26 @@ function DetailContainer() {
     );
   }
 
-
   useEffect(() => {
     dispatch(MovieDetailActionCreators.movieDetailRequest());
   }, []);
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView>
       <DetailHeader
         title={movie.title}
         voteAverage={movie.voteAverage}
         voteCount={movie.voteCount}
         backdropUrl={movie.backdropUrl}
       />
-      <View style={styles.content}>
+      <View style={HomeStyle.contentDetailBody}>
         <Title>PLOT</Title>
         <Paragraph>{movie.overview}</Paragraph>
         <GenreChip genres={movie.genres} />
 
-        <Title style={styles.title}>Recommended Movies</Title>
+        <Title style={HomeStyle.title}>Recommended Movies</Title>
         <FlatList
-          contentContainerStyle={styles.contentFlatlist}
+          contentContainerStyle={HomeStyle.contentFlatlist}
           data={movie.recommendations ?.results}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => renderItem(item)}
@@ -95,10 +70,5 @@ function DetailContainer() {
     </ScrollView>
   );
 }
-
-DetailContainer.navigationOptions = () => ({
-  headerTransparent: true,
-  headerTintColor: '#eeeeee',
-});
 
 export default DetailContainer;

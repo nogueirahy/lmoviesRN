@@ -93,8 +93,8 @@ exports[`CardMovie deve renderizar corretamente 1`] = `
       }
       style={
         Object {
-          "backgroundColor": "#212C31",
-          "borderColor": "#212C31",
+          "backgroundColor": "#ebebeb",
+          "borderColor": "#ebebeb",
           "borderRadius": 16,
           "borderStyle": "solid",
           "borderWidth": 0.5,
@@ -211,6 +211,7 @@ exports[`CardMovie deve renderizar corretamente 1`] = `
               },
               Object {
                 "fontWeight": "bold",
+                "letterSpacing": 0.3,
                 "marginTop": 14,
                 "textAlign": "center",
               },

@@ -63,7 +63,7 @@ function HomeContainer() {
     <ScrollView style={HomeStyle.container}>
       <Title style={HomeStyle.title}>Upcoming Movies</Title>
       <FlatList
-        contentContainerStyle={HomeStyle.content}
+        contentContainerStyle={HomeStyle.contentFlatlist}
         data={data}
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => renderItem(item)}

@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { Chip } from 'react-native-paper';
+
+import { GenresChipStyle } from './styles';
 
 const propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object),
@@ -12,25 +14,17 @@ const defaultProps = {
   genres: [],
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    paddingTop: 10,
-  },
-  chipContainer: {
-    margin: 4,
-  },
-  text: {
-    fontStyle: 'italic',
-  },
-});
-
 function GenresChip({ genres }) {
   return (
-    <View style={styles.container}>
+    <View style={GenresChipStyle.container}>
       {genres.map(item => (
-        <Chip key={item.id} style={styles.chipContainer} textStyle={styles.text}>{item.name}</Chip>
+        <Chip
+          key={item.id}
+          style={GenresChipStyle.chipContainer}
+          textStyle={GenresChipStyle.text}
+        >
+          {item.name}
+        </Chip>
       ))
       }
     </View>

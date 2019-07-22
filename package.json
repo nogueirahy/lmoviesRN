@@ -16,6 +16,7 @@
     "@expo/vector-icons": "9.0.0",
     "apisauce": "1.0.3",
     "expo": "33.0.0",
+    "expo-constants": "^5.0.1",
     "expo-linear-gradient": "^5.0.1",
     "moment": "2.24.0",
     "prop-types": "15.7.2",
