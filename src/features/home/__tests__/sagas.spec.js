@@ -1,6 +1,6 @@
 import { put, call } from 'redux-saga/effects';
 
-import { handleMovieRequest } from '../sagas';
+import { handleUpcomingRequest } from '../sagas';
 import { MovieActionCreators } from '../ducks';
 import { api } from '../../../api';
 import { upcomingData } from '../../../__mocks__';
@@ -17,7 +17,7 @@ describe('Quando executar as sagas da feature home', () => {
   };
   describe('Quando executar as ações dos filmes', () => {
     beforeEach(() => {
-      gen = handleMovieRequest(action);
+      gen = handleUpcomingRequest(action);
     });
 
     it('Deve obter os dados dos filmes da API e chamar a ação de sucesso', () => {
@@ -33,7 +33,7 @@ describe('Quando executar as sagas da feature home', () => {
       expect(api.getUpcoming).toBeCalledWith(page);
 
       expect(gen.next(mockResponse).value).toEqual(
-        put(MovieActionCreators.movieSuccess(mockResponse.data.results)),
+        put(MovieActionCreators.upcomingSuccess(mockResponse.data.results)),
       );
       expect(gen.next().done).toBeTruthy();
     });
@@ -49,7 +49,7 @@ describe('Quando executar as sagas da feature home', () => {
       expect(api.getUpcoming).toBeCalledWith(page);
 
       expect(gen.next(mockFailureResponse).value).toEqual(
-        put(MovieActionCreators.movieFailure()),
+        put(MovieActionCreators.failure()),
       );
       expect(gen.next().done).toBeTruthy();
     });

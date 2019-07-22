@@ -6,7 +6,7 @@ exports[`GenresChip deve renderizar corretamente 1`] = `
     Object {
       "flexDirection": "row",
       "flexWrap": "wrap",
-      "paddingTop": 10,
+      "paddingVertical": 12,
     }
   }
 />

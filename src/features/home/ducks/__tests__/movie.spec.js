@@ -4,29 +4,28 @@ describe('ducks home', () => {
   describe('Quando executar as actions', () => {
     it('Deve alterar o estado para movieRequest', () => {
       const page = 1;
-      const action = Creators.movieRequest(page);
+      const action = Creators.upcomingRequest(page);
       expect(reducer(undefined, action)).toEqual({
         ...INITIAL_STATE,
         page,
-        isFetching: true,
       });
     });
 
     it('Deve alterar o estado para movieSuccess', () => {
-      const data = [];
-      const action = Creators.movieSuccess(data);
+      const upcomingData = [];
+      const upcomingTotalPages = 12;
+      const action = Creators.upcomingSuccess(upcomingData, upcomingTotalPages);
       expect(reducer(undefined, action)).toEqual({
         ...INITIAL_STATE,
-        data,
-        isFetching: false,
+        upcomingData,
+        upcomingTotalPages,
       });
     });
 
     it('Deve alterar o estado para movieFailure', () => {
-      const action = Creators.movieFailure();
+      const action = Creators.failure();
       expect(reducer(undefined, action)).toEqual({
         ...INITIAL_STATE,
-        isFetching: false,
       });
     });
   });
