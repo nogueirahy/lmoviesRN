@@ -1,6 +1,11 @@
-import { put, call, takeLatest } from 'redux-saga/effects';
+import {
+  put, call, select, takeLatest,
+} from 'redux-saga/effects';
 
-import { MovieActionCreators, MovieTypes } from './ducks';
+import { idSelector } from './selectors';
+import {
+  MovieActionCreators, MovieTypes, MovieDetailActionCreators, MovieDetailTypes,
+} from './ducks';
 
 import { api } from '../../api';
 
@@ -15,6 +20,17 @@ export function* handleMovieRequest({ page }) {
   }
 }
 
+export function* handleMovieDetailRequest() {
+  const id = yield select(idSelector);
+  const response = yield call(api.getDetailMovie, id);
+  if (response.ok) {
+    yield put(MovieDetailActionCreators.movieDetailSuccess(response.data));
+  } else {
+    yield put(MovieDetailActionCreators.movieDetailFailure());
+  }
+}
+
 export const homeSagas = [
   takeLatest(MovieTypes.MOVIE_REQUEST, handleMovieRequest),
+  takeLatest(MovieDetailTypes.MOVIE_DETAIL_REQUEST, handleMovieDetailRequest),
 ];

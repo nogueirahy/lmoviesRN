@@ -11,4 +11,11 @@ const getUpcoming = page => api.get('/3/movie/upcoming', {
   page,
 });
 
-export default { getUpcoming };
+const getDetailMovie = id => api.get(`/3/movie/${id}`, {
+  api_key: API_SECRET,
+  language: 'en-US',
+  append_to_response: 'recommendations',
+});
+
+
+export default { getUpcoming, getDetailMovie };

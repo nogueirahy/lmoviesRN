@@ -19,6 +19,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 14,
+    letterSpacing: 0.3,
   },
   subtitle: {
     textAlign: 'center',

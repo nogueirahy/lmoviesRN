@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 
-import { movieReducer } from '../features/home/ducks';
+import { movieReducer, movieDetailReducer } from '../features/home/ducks';
 
 const rootReducer = combineReducers({
   movie: movieReducer,
+  movieDetail: movieDetailReducer,
 });
 
 export { rootReducer };
