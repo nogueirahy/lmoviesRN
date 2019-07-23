@@ -1,36 +1,84 @@
 import { createActions, createReducer } from 'reduxsauce';
 
 export const { Types, Creators } = createActions({
-  movieRequest: ['page'],
-  movieSuccess: ['data', 'totalPages'],
-  movieFailure: null,
+  selectedMovie: ['id'],
+
+  upcomingRequest: ['page'],
+  upcomingSuccess: ['upcomingData', 'upcomingTotalPages'],
+
+  popularRequest: ['page'],
+  popularSuccess: ['popularData', 'popularTotalPages'],
+
+  topRatedRequest: ['page'],
+  topRatedSuccess: ['topRatedData', 'topRatedTotalPages'],
+
+  failure: null,
 });
 
 export const INITIAL_STATE = {
-  data: [],
-  isFetching: false,
+  upcomingData: [],
+  popularData: [],
+  topRatedData: [],
+  selectedMovie: null,
 };
 
-export const movieRequest = (state, { page }) => ({
+export const selectedMovie = (state, { id }) => ({
+  ...state,
+  id,
+});
+
+// Upcoming reducer
+export const upcomingRequest = (state, { page }) => ({
   ...state,
   page,
-  isFetching: true,
 });
 
-export const movieSuccess = (state, { data, totalPages }) => ({
+export const upcomingSuccess = (state, { upcomingData, upcomingTotalPages }) => ({
   ...state,
-  data: [...state.data, ...data],
-  totalPages,
-  isFetching: false,
+  upcomingData: [...state.upcomingData, ...upcomingData],
+  upcomingTotalPages,
 });
 
-export const movieFailure = state => ({
+// Popular reducer
+export const popularRequest = (state, { page }) => ({
   ...state,
-  isFetching: false,
+  page,
+});
+
+export const popularSuccess = (state, { popularData, popularTotalPages }) => ({
+  ...state,
+  popularData: [...state.popularData, ...popularData],
+  popularTotalPages,
+});
+
+// TopRated reducer
+export const topRatedRequest = (state, { page }) => ({
+  ...state,
+  page,
+});
+
+export const topRatedSuccess = (state, { topRatedData, topRatedTotalPages }) => ({
+  ...state,
+  topRatedData: [...state.topRatedData, ...topRatedData],
+  topRatedTotalPages,
+});
+
+// generic failure reducer
+export const failure = state => ({
+  ...state,
 });
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.MOVIE_REQUEST]: movieRequest,
-  [Types.MOVIE_SUCCESS]: movieSuccess,
-  [Types.MOVIE_FAILURE]: movieFailure,
+  [Types.SELECTED_MOVIE]: selectedMovie,
+
+  [Types.UPCOMING_REQUEST]: upcomingRequest,
+  [Types.UPCOMING_SUCCESS]: upcomingSuccess,
+
+  [Types.POPULAR_REQUEST]: popularRequest,
+  [Types.POPULAR_SUCCESS]: popularSuccess,
+
+  [Types.TOP_RATED_REQUEST]: topRatedRequest,
+  [Types.TOP_RATED_SUCCESS]: topRatedSuccess,
+
+  [Types.FAILURE]: failure,
 });

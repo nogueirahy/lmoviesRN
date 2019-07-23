@@ -1,3 +1,4 @@
 import Home from './HomeContainer';
+import Details from './DetailContainer';
 
-export { Home };
+export { Home, Details };

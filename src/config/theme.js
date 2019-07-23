@@ -1,25 +1,18 @@
-import { DefaultTheme } from 'react-native-paper';
+import { DarkTheme } from 'react-native-paper';
 
-import {
-  blue, blueDark, blueLight, blueGreyDark, white, red, redLight,
-} from './colors';
+export const color = {
+  primary: '#dbedf3',
+  accent: '#00818a',
+  surface: '#404b69',
+  text: '#e0f2f1',
+  background: '#232931',
+};
 
 const theme = {
-  ...DefaultTheme,
-  dark: false,
-  roundness: 2,
-  colors: {
-    primary: blue,
-    accent: blueDark,
-    surface: white,
-    text: blueGreyDark,
-    disabled: blueGreyDark,
-    placeholder: blueLight,
-    background: white,
-    error: red,
-    backdrop: 'rgba(0, 0, 0, 0.5)',
-    notification: redLight,
-  },
+  ...DarkTheme,
+  dark: true,
+  roundness: 4,
+  colors: { ...color },
 };
 
 export default theme;

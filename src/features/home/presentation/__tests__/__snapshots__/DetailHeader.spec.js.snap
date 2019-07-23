@@ -1,0 +1,228 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailHeader deve renderizar corretamente 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  proxiedProperties={
+    Object {
+      "colors": Array [
+        4283354275,
+        4280494385,
+        4278190080,
+      ],
+      "endPoint": Array [
+        0,
+        0,
+      ],
+      "locations": undefined,
+      "startPoint": Array [
+        0,
+        1,
+      ],
+    }
+  }
+  style={
+    Object {
+      "flex": 0.8,
+    }
+  }
+>
+  <View
+    accessibilityIgnoresInvertColors={true}
+    style={
+      Object {
+        "height": 250,
+        "opacity": 0.3,
+        "width": "100%",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": null,
+        }
+      }
+      style={
+        Array [
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "height": 250,
+            "width": "100%",
+          },
+          undefined,
+        ]
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "bottom": "5%",
+        "paddingHorizontal": 20,
+        "position": "absolute",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "Helvetica Neue",
+            "textAlign": "left",
+            "writingDirection": "ltr",
+          },
+          Array [
+            Object {
+              "color": "rgba(0, 0, 0, 0.87)",
+              "fontFamily": "HelveticaNeue-Medium",
+              "textAlign": "left",
+              "writingDirection": "ltr",
+            },
+            Array [
+              Object {
+                "fontSize": 20,
+                "lineHeight": 30,
+                "marginVertical": 2,
+              },
+              Object {
+                "fontSize": 28,
+                "fontWeight": "bold",
+              },
+            ],
+            Array [
+              Object {
+                "fontSize": 20,
+                "lineHeight": 30,
+                "marginVertical": 2,
+              },
+              Object {
+                "fontSize": 28,
+                "fontWeight": "bold",
+              },
+            ],
+          ],
+        ]
+      }
+    >
+      
+    </Text>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text />
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "Helvetica Neue",
+              "textAlign": "left",
+              "writingDirection": "ltr",
+            },
+            Array [
+              Object {
+                "color": "rgba(0, 0, 0, 0.87)",
+                "fontFamily": "Helvetica Neue",
+                "textAlign": "left",
+                "writingDirection": "ltr",
+              },
+              Array [
+                Object {
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginVertical": 2,
+                },
+                Object {
+                  "fontWeight": "bold",
+                  "paddingHorizontal": 2,
+                },
+              ],
+              Array [
+                Object {
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginVertical": 2,
+                },
+                Object {
+                  "fontWeight": "bold",
+                  "paddingHorizontal": 2,
+                },
+              ],
+            ],
+          ]
+        }
+      >
+        0/10  AVG.
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text />
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "Helvetica Neue",
+              "textAlign": "left",
+              "writingDirection": "ltr",
+            },
+            Array [
+              Object {
+                "color": "rgba(0, 0, 0, 0.87)",
+                "fontFamily": "Helvetica Neue",
+                "textAlign": "left",
+                "writingDirection": "ltr",
+              },
+              Array [
+                Object {
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginVertical": 2,
+                },
+                Object {
+                  "fontWeight": "bold",
+                  "paddingHorizontal": 2,
+                },
+              ],
+              Array [
+                Object {
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginVertical": 2,
+                },
+                Object {
+                  "fontWeight": "bold",
+                  "paddingHorizontal": 2,
+                },
+              ],
+            ],
+          ]
+        }
+      >
+        0 Votes
+      </Text>
+    </View>
+  </View>
+</ViewManagerAdapter_ExpoLinearGradient>
+`;

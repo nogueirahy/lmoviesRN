@@ -2,31 +2,79 @@ import { INITIAL_STATE, reducer, Creators } from '../movie';
 
 describe('ducks home', () => {
   describe('Quando executar as actions', () => {
-    it('Deve alterar o estado para movieRequest', () => {
-      const page = 1;
-      const action = Creators.movieRequest(page);
+    it('Deve alterar o estado do id do filme', () => {
+      const id = 14230;
+      const action = Creators.selectedMovie(id);
       expect(reducer(undefined, action)).toEqual({
         ...INITIAL_STATE,
-        page,
-        isFetching: true,
+        id,
       });
     });
 
-    it('Deve alterar o estado para movieSuccess', () => {
-      const data = [];
-      const action = Creators.movieSuccess(data);
+    it('Deve alterar o estado para upcomingRequest', () => {
+      const page = 1;
+      const action = Creators.upcomingRequest(page);
       expect(reducer(undefined, action)).toEqual({
         ...INITIAL_STATE,
-        data,
-        isFetching: false,
+        page,
+      });
+    });
+
+    it('Deve alterar o estado para upcomingSuccess', () => {
+      const upcomingData = [];
+      const upcomingTotalPages = 12;
+      const action = Creators.upcomingSuccess(upcomingData, upcomingTotalPages);
+      expect(reducer(undefined, action)).toEqual({
+        ...INITIAL_STATE,
+        upcomingData,
+        upcomingTotalPages,
+      });
+    });
+
+    it('Deve alterar o estado para popularRequest', () => {
+      const page = 1;
+      const action = Creators.popularRequest(page);
+      expect(reducer(undefined, action)).toEqual({
+        ...INITIAL_STATE,
+        page,
+      });
+    });
+
+    it('Deve alterar o estado para popularSuccess', () => {
+      const popularData = [];
+      const popularTotalPages = 12;
+      const action = Creators.popularSuccess(popularData, popularTotalPages);
+      expect(reducer(undefined, action)).toEqual({
+        ...INITIAL_STATE,
+        popularData,
+        popularTotalPages,
+      });
+    });
+
+    it('Deve alterar o estado para topRatedRequest', () => {
+      const page = 1;
+      const action = Creators.topRatedRequest(page);
+      expect(reducer(undefined, action)).toEqual({
+        ...INITIAL_STATE,
+        page,
+      });
+    });
+
+    it('Deve alterar o estado para topRatedSuccess', () => {
+      const topRatedData = [];
+      const topRatedTotalPages = 12;
+      const action = Creators.topRatedSuccess(topRatedData, topRatedTotalPages);
+      expect(reducer(undefined, action)).toEqual({
+        ...INITIAL_STATE,
+        topRatedData,
+        topRatedTotalPages,
       });
     });
 
     it('Deve alterar o estado para movieFailure', () => {
-      const action = Creators.movieFailure();
+      const action = Creators.failure();
       expect(reducer(undefined, action)).toEqual({
         ...INITIAL_STATE,
-        isFetching: false,
       });
     });
   });

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, act } from 'react-native-testing-library';
+import { render, act, fireEvent } from 'react-native-testing-library';
 
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
@@ -16,5 +16,6 @@ export default function (Component, state = {}) {
     ),
     store,
     act,
+    fireEvent,
   };
 }

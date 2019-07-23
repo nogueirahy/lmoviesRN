@@ -9,6 +9,7 @@ describe('CardMovie', () => {
     imageUrl: 'https://image.tmdb.org/t/p/w500/dzBtMocZuJbjLOXvrl4zGYigDzh.jpg"',
     voteAverage: 7.7,
     releaseDate: 'Jul 20th 19',
+    onPress: jest.fn(),
   };
 
   it('deve renderizar corretamente', () => {

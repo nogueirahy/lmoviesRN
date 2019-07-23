@@ -11,4 +11,25 @@ const getUpcoming = page => api.get('/3/movie/upcoming', {
   page,
 });
 
-export default { getUpcoming };
+const getPopular = page => api.get('/3/movie/popular', {
+  api_key: API_SECRET,
+  language: 'en-US',
+  page,
+});
+
+const getTopRated = page => api.get('/3/movie/top_rated', {
+  api_key: API_SECRET,
+  language: 'en-US',
+  page,
+});
+
+const getDetailMovie = id => api.get(`/3/movie/${id}`, {
+  api_key: API_SECRET,
+  language: 'en-US',
+  append_to_response: 'recommendations',
+});
+
+
+export default {
+  getUpcoming, getPopular, getTopRated, getDetailMovie,
+};

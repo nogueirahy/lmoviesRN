@@ -2,7 +2,7 @@
   "expo": {
     "name": "leoMovies",
     "slug": "leoMovies",
-    "privacy": "public",
+    "privacy": "unlisted",
     "sdkVersion": "33.0.0",
     "platforms": [
       "ios",
@@ -15,7 +15,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#232931"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

@@ -1,12 +1,13 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+
 import { Card, Chip, Text } from 'react-native-paper';
 import { CardMovieStyle } from './styles';
 import { themeChip } from './styles/CardMovieStyle';
 
 const propTypes = {
+  onPress: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
   voteAverage: PropTypes.number.isRequired,
@@ -14,10 +15,10 @@ const propTypes = {
 };
 
 function CardMovie({
-  title, imageUrl, voteAverage, releaseDate,
+  title, imageUrl, voteAverage, releaseDate, onPress,
 }) {
   return (
-    <Card elevation={4} style={CardMovieStyle.container}>
+    <Card elevation={4} style={CardMovieStyle.container} onPress={onPress}>
       <Card.Cover source={{ uri: imageUrl }} />
       <Chip style={CardMovieStyle.chip} theme={themeChip} icon="star" disabled>
         {voteAverage}
@@ -37,5 +38,4 @@ function CardMovie({
 }
 
 CardMovie.propTypes = propTypes;
-
 export default CardMovie;

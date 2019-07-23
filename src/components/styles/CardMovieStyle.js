@@ -1,8 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-import { blueGreyDark } from '../../config/colors';
-
-
 export default StyleSheet.create({
   container: {
     minWidth: 135,
@@ -13,12 +10,12 @@ export default StyleSheet.create({
   chip: {
     position: 'absolute',
     bottom: '21%',
-    backgroundColor: blueGreyDark,
   },
   title: {
     fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 14,
+    letterSpacing: 0.3,
   },
   subtitle: {
     textAlign: 'center',
