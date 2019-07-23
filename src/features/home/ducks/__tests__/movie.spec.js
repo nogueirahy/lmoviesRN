@@ -17,6 +17,7 @@ describe('ducks home', () => {
       expect(reducer(undefined, action)).toEqual({
         ...INITIAL_STATE,
         page,
+        isFetching: true,
       });
     });
 
@@ -28,6 +29,7 @@ describe('ducks home', () => {
         ...INITIAL_STATE,
         upcomingData,
         upcomingTotalPages,
+        isFetching: false,
       });
     });
 
@@ -37,6 +39,7 @@ describe('ducks home', () => {
       expect(reducer(undefined, action)).toEqual({
         ...INITIAL_STATE,
         page,
+        isFetching: true,
       });
     });
 
@@ -48,6 +51,7 @@ describe('ducks home', () => {
         ...INITIAL_STATE,
         popularData,
         popularTotalPages,
+        isFetching: false,
       });
     });
 
@@ -57,6 +61,7 @@ describe('ducks home', () => {
       expect(reducer(undefined, action)).toEqual({
         ...INITIAL_STATE,
         page,
+        isFetching: true,
       });
     });
 
@@ -68,6 +73,7 @@ describe('ducks home', () => {
         ...INITIAL_STATE,
         topRatedData,
         topRatedTotalPages,
+        isFetching: false,
       });
     });
 
@@ -75,6 +81,7 @@ describe('ducks home', () => {
       const action = Creators.failure();
       expect(reducer(undefined, action)).toEqual({
         ...INITIAL_STATE,
+        isFetching: false,
       });
     });
   });
