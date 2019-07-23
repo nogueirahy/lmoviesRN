@@ -74,6 +74,12 @@ cd leoMovies
 yarn install
 ```
 
+Crie um arquivo .env e em seguida adicione sua KEY
+```
+API_URL=https://api.themoviedb.org
+API_SECRET=<YOUR SECRET KEY>
+```
+
 Inicie seu emulador de escolha. Após o emulador ser iniciado, rode o comando abaixo para iniciar o servidor do Expo e rodar o projeto no emulador.
 
 ```
