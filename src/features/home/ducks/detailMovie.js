@@ -8,27 +8,18 @@ export const { Types, Creators } = createActions({
 
 export const INITIAL_STATE = {
   data: {},
-  isFetching: false,
 };
 
 export const movieDetailRequest = state => ({
   ...state,
-  isFetching: true,
 });
 
 export const movieDetailSuccess = (state, { data }) => ({
   ...state,
   data,
-  isFetching: false,
-});
-
-export const movieDetailFailure = state => ({
-  ...state,
-  isFetching: false,
 });
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.MOVIE_DETAIL_REQUEST]: movieDetailRequest,
   [Types.MOVIE_DETAIL_SUCCESS]: movieDetailSuccess,
-  [Types.MOVIE_DETAIL_FAILURE]: movieDetailFailure,
 });

@@ -51,7 +51,7 @@ function MovieListContainer({
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => renderItem(item)}
         onEndReached={nextPage}
-        onEndReachedThreshold={0.1}
+        onEndReachedThreshold={0.5}
         horizontal
         showsHorizontalScrollIndicator={false}
         testID="movieList"

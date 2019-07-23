@@ -8,13 +8,12 @@ import MovieList from './MovieListContainer';
 import { GenreChip, DetailHeader } from '../presentation';
 import { themoviedbHelper } from '../../../lib';
 import { MovieActionCreators, MovieDetailActionCreators } from '../ducks';
-import { movieDetailDataSelector } from '../selectors';
 import { HomeStyle } from './styles';
 
 
 function DetailContainer() {
   const dispatch = useDispatch();
-  const data = useSelector(movieDetailDataSelector);
+  const { data } = useSelector(state => state.movieDetail);
   const movie = themoviedbHelper.normalizeData(data);
 
   function onRequestDetail(id) {
