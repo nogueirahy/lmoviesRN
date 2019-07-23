@@ -1,4 +1,7 @@
 # leoMovies
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0e1aba5337bf49f09c01272d0280a4cf)](https://app.codacy.com/app/nogueirahy/leoMovies?utm_source=github.com&utm_medium=referral&utm_content=nogueirahy/leoMovies&utm_campaign=Badge_Grade_Dashboard)
+
 app mobile de filmes
 
 
