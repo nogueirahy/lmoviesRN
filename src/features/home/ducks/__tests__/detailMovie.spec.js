@@ -6,6 +6,7 @@ describe('ducks home', () => {
       const action = Creators.movieDetailRequest();
       expect(reducer(undefined, action)).toEqual({
         ...INITIAL_STATE,
+        isFetching: true,
       });
     });
 
@@ -15,6 +16,7 @@ describe('ducks home', () => {
       expect(reducer(undefined, action)).toEqual({
         ...INITIAL_STATE,
         data,
+        isFetching: false,
       });
     });
   });

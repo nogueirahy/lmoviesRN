@@ -8,15 +8,18 @@ export const { Types, Creators } = createActions({
 
 export const INITIAL_STATE = {
   data: {},
+  isFetching: false,
 };
 
 export const movieDetailRequest = state => ({
   ...state,
+  isFetching: true,
 });
 
 export const movieDetailSuccess = (state, { data }) => ({
   ...state,
   data,
+  isFetching: false,
 });
 
 export const reducer = createReducer(INITIAL_STATE, {

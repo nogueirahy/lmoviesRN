@@ -20,6 +20,7 @@ export const INITIAL_STATE = {
   popularData: [],
   topRatedData: [],
   selectedMovie: null,
+  isFetching: true,
 };
 
 export const selectedMovie = (state, { id }) => ({
@@ -31,41 +32,49 @@ export const selectedMovie = (state, { id }) => ({
 export const upcomingRequest = (state, { page }) => ({
   ...state,
   page,
+  isFetching: true,
 });
 
 export const upcomingSuccess = (state, { upcomingData, upcomingTotalPages }) => ({
   ...state,
   upcomingData: [...state.upcomingData, ...upcomingData],
   upcomingTotalPages,
+  isFetching: false,
 });
 
 // Popular reducer
 export const popularRequest = (state, { page }) => ({
   ...state,
   page,
+  isFetching: true,
 });
 
 export const popularSuccess = (state, { popularData, popularTotalPages }) => ({
   ...state,
   popularData: [...state.popularData, ...popularData],
   popularTotalPages,
+  isFetching: false,
+
 });
 
 // TopRated reducer
 export const topRatedRequest = (state, { page }) => ({
   ...state,
   page,
+  isFetching: true,
 });
 
 export const topRatedSuccess = (state, { topRatedData, topRatedTotalPages }) => ({
   ...state,
   topRatedData: [...state.topRatedData, ...topRatedData],
   topRatedTotalPages,
+  isFetching: false,
 });
 
 // generic failure reducer
 export const failure = state => ({
   ...state,
+  isFetching: false,
 });
 
 export const reducer = createReducer(INITIAL_STATE, {

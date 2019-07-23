@@ -15,6 +15,7 @@ function HomeContainer() {
     upcomingData, upcomingTotalPages,
     popularData, popularTotalPages,
     topRatedData, topRatedTotalPages,
+    isFetching,
   } = useSelector(state => state.movie);
   const upcomingNextPage = useNextPage(MovieActionCreators.upcomingRequest, upcomingTotalPages);
   const popularNextPage = useNextPage(MovieActionCreators.popularRequest, popularTotalPages);
@@ -33,9 +34,9 @@ function HomeContainer() {
 
   return (
     <ScrollView style={HomeStyle.container}>
-      <MovieList title="Upcoming Movies" data={upcomingData} nextPage={upcomingNextPage} onPress={doNavigateToDetails} />
-      <MovieList title="Popular" data={popularData} nextPage={popularNextPage} onPress={doNavigateToDetails} />
-      <MovieList title="Top Rated" data={topRatedData} nextPage={topRatedNextPage} onPress={doNavigateToDetails} />
+      <MovieList isFetching={isFetching} title="Upcoming Movies" data={upcomingData} nextPage={upcomingNextPage} onPress={doNavigateToDetails} />
+      <MovieList isFetching={isFetching} title="Popular" data={popularData} nextPage={popularNextPage} onPress={doNavigateToDetails} />
+      <MovieList isFetching={isFetching} title="Top Rated" data={topRatedData} nextPage={topRatedNextPage} onPress={doNavigateToDetails} />
     </ScrollView>
   );
 }

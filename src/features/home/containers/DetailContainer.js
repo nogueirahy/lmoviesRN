@@ -13,7 +13,7 @@ import { HomeStyle } from './styles';
 
 function DetailContainer() {
   const dispatch = useDispatch();
-  const { data } = useSelector(state => state.movieDetail);
+  const { data, isFetching } = useSelector(state => state.movieDetail);
   const movie = themoviedbHelper.normalizeData(data);
 
   function onRequestDetail(id) {
@@ -42,6 +42,7 @@ function DetailContainer() {
         title="Recommended Movies"
         data={movie.recommendations ?.results}
         onPress={onRequestDetail}
+        isFetching={isFetching}
       />
     </ScrollView>
   );

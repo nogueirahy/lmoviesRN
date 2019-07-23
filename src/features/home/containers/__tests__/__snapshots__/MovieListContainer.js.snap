@@ -51,6 +51,7 @@ Array [
     title
   </Text>,
   <RCTScrollView
+    ListFooterComponent={[Function]}
     contentContainerStyle={
       Object {
         "justifyContent": "space-evenly",
@@ -191,7 +192,7 @@ Array [
     numColumns={1}
     onContentSizeChange={[Function]}
     onEndReached={[MockFunction]}
-    onEndReachedThreshold={0.5}
+    onEndReachedThreshold={0.2}
     onLayout={[Function]}
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
@@ -455,7 +456,7 @@ Array [
                     ]
                   }
                 >
-                  Jul 22nd 19
+                  Jul 23rd 19
                 </Text>
               </View>
             </View>
@@ -709,7 +710,7 @@ Array [
                     ]
                   }
                 >
-                  Jul 22nd 19
+                  Jul 23rd 19
                 </Text>
               </View>
             </View>
@@ -963,7 +964,7 @@ Array [
                     ]
                   }
                 >
-                  Jul 22nd 19
+                  Jul 23rd 19
                 </Text>
               </View>
             </View>
@@ -1217,7 +1218,7 @@ Array [
                     ]
                   }
                 >
-                  Jul 22nd 19
+                  Jul 23rd 19
                 </Text>
               </View>
             </View>
@@ -1471,7 +1472,7 @@ Array [
                     ]
                   }
                 >
-                  Jul 22nd 19
+                  Jul 23rd 19
                 </Text>
               </View>
             </View>
@@ -1725,13 +1726,16 @@ Array [
                     ]
                   }
                 >
-                  Jul 22nd 19
+                  Jul 23rd 19
                 </Text>
               </View>
             </View>
           </View>
         </View>
       </View>
+      <View
+        onLayout={[Function]}
+      />
     </View>
   </RCTScrollView>,
 ]
