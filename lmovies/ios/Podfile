@@ -8,6 +8,7 @@ target 'lmovies' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+
   target 'lmoviesTests' do
     inherit! :complete
     # Pods for testing
