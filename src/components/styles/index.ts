@@ -1,3 +1,3 @@
-import CardMovieStyle from './CardMovieStyle';
+import CardMovieStyle from "./CardMovieStyle";
 
 export { CardMovieStyle };

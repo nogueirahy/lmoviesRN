@@ -1,4 +1,4 @@
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions } from "react-navigation";
 
 let navigator;
 
@@ -11,7 +11,7 @@ function navigate(routeName, params) {
     NavigationActions.navigate({
       routeName,
       params,
-    }),
+    })
   );
 }
 
@@ -20,7 +20,7 @@ function setParams(key, params) {
     NavigationActions.setParams({
       key,
       params,
-    }),
+    })
   );
 }
 
@@ -28,7 +28,7 @@ function goBack(key) {
   navigator.dispatch(
     NavigationActions.back({
       key,
-    }),
+    })
   );
 }
 

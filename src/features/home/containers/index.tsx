@@ -1,4 +1,4 @@
-import Home from './HomeContainer';
-import Details from './DetailContainer';
+import Home from "./HomeContainer";
+import Details from "./DetailContainer";
 
-export {Home, Details};
+export { Home, Details };

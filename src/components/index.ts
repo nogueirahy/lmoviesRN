@@ -1,4 +1,4 @@
-import CardMovie from './CardMovie';
-import CardMoviePlaceholder from './CardMoviePlaceholder';
+import CardMovie from "./CardMovie";
+import CardMoviePlaceholder from "./CardMoviePlaceholder";
 
 export { CardMovie, CardMoviePlaceholder };

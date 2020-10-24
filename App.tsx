@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import { Provider } from 'react-redux';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { Provider } from "react-redux";
+import { Provider as PaperProvider } from "react-native-paper";
 
-import { store } from './src/store/configureStore';
-import AppNavigator from './src/navigation';
-import theme from './src/config/theme';
+import { store } from "./src/store/configureStore";
+import AppNavigator from "./src/navigation";
+import theme from "./src/config/theme";
 
 const App = () => (
   <Provider store={store}>

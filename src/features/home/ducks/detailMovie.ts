@@ -1,8 +1,8 @@
-import {createActions, createReducer} from 'reduxsauce';
+import { createActions, createReducer } from "reduxsauce";
 
-export const {Types, Creators} = createActions({
+export const { Types, Creators } = createActions({
   movieDetailRequest: null,
-  movieDetailSuccess: ['data'],
+  movieDetailSuccess: ["data"],
   movieDetailFailure: null,
 });
 
@@ -16,7 +16,7 @@ export const movieDetailRequest = (state) => ({
   isFetching: true,
 });
 
-export const movieDetailSuccess = (state, {data}) => ({
+export const movieDetailSuccess = (state, { data }) => ({
   ...state,
   data,
   isFetching: false,

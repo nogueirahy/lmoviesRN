@@ -2,15 +2,19 @@ import {
   reducer as movieReducer,
   Creators as MovieActionCreators,
   Types as MovieTypes,
-} from './movie';
+} from "./movie";
 
 import {
   reducer as movieDetailReducer,
   Creators as MovieDetailActionCreators,
   Types as MovieDetailTypes,
-} from './detailMovie';
+} from "./detailMovie";
 
 export {
-  movieReducer, MovieActionCreators, MovieTypes,
-  movieDetailReducer, MovieDetailActionCreators, MovieDetailTypes,
+  movieReducer,
+  MovieActionCreators,
+  MovieTypes,
+  movieDetailReducer,
+  MovieDetailActionCreators,
+  MovieDetailTypes,
 };

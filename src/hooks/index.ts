@@ -1,3 +1,3 @@
-import useNextPage from './useNextPage';
+import useNextPage from "./useNextPage";
 
 export { useNextPage };
