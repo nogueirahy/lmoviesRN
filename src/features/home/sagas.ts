@@ -1,19 +1,20 @@
-import {
-  put, call, select, takeLatest,
-} from 'redux-saga/effects';
+import { put, call, select, takeLatest } from "redux-saga/effects";
 
-import { idSelector } from './selectors';
+import { idSelector } from "./selectors";
 import {
-  MovieActionCreators, MovieTypes, MovieDetailActionCreators, MovieDetailTypes,
-} from './ducks';
+  MovieActionCreators,
+  MovieTypes,
+  MovieDetailActionCreators,
+  MovieDetailTypes,
+} from "./ducks";
 
-import { api } from '../../api';
+import { api } from "../../api";
 
 export function* handleUpcomingRequest({ page }) {
   const response = yield call(api.getUpcoming, page);
   if (response.ok) {
     const { results, total_pages: totalPages } = response.data;
-
+    console.log(response.data);
     yield put(MovieActionCreators.upcomingSuccess(results, totalPages));
   } else {
     yield put(MovieActionCreators.failure());

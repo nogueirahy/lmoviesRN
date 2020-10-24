@@ -1,19 +1,18 @@
-import React, { useEffect } from 'react';
-import { View, ScrollView } from 'react-native';
+import React, { useEffect } from "react";
+import { View, ScrollView } from "react-native";
 
-import { Title, Paragraph } from 'react-native-paper';
-import { useSelector, useDispatch } from 'react-redux';
+import { Title, Paragraph } from "react-native-paper";
+import { useSelector, useDispatch } from "react-redux";
 
-import MovieList from './MovieListContainer';
-import { GenreChip, DetailHeader } from '../presentation';
-import { themoviedbHelper } from '../../../lib';
-import { MovieActionCreators, MovieDetailActionCreators } from '../ducks';
-import { HomeStyle } from './styles';
+import MovieList from "./MovieListContainer";
+import { GenreChip, DetailHeader } from "../presentation";
+import { themoviedbHelper } from "../../../lib";
+import { MovieActionCreators, MovieDetailActionCreators } from "../ducks";
+import { HomeStyle } from "./styles";
 
-
-function DetailContainer() {
+const DetailContainer: React.FC = () => {
   const dispatch = useDispatch();
-  const { data, isFetching } = useSelector(state => state.movieDetail);
+  const { data, isFetching } = useSelector((state) => state.movieDetail);
   const movie = themoviedbHelper.normalizeData(data);
 
   function onRequestDetail(id) {
@@ -40,12 +39,12 @@ function DetailContainer() {
       </View>
       <MovieList
         title="Recommended Movies"
-        data={movie.recommendations ?.results}
+        data={movie.recommendations?.results}
         onPress={onRequestDetail}
         isFetching={isFetching}
       />
     </ScrollView>
   );
-}
+};
 
 export default DetailContainer;
