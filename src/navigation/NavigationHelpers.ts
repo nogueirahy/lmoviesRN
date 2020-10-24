@@ -1,5 +1,6 @@
-import NavigationService from './NavigationService';
+import NavigationService from "./NavigationService";
 
 export const goBack = () => NavigationService.goBack();
 
-export const navigateToDetails = params => NavigationService.navigate('Details', params);
+export const navigateToDetails = (params?: object) =>
+  NavigationService.navigate("Details", params);

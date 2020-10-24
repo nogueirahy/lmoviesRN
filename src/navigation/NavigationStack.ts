@@ -1,7 +1,7 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator, createAppContainer } from "react-navigation";
 
-import { Home, Details } from '../features/home/containers';
-import { color } from '../config/theme';
+import { Home, Details } from "../features/home/containers";
+import { color } from "../config/theme";
 
 const RNApp = createStackNavigator(
   {
@@ -18,8 +18,8 @@ const RNApp = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Home',
-  },
+    initialRouteName: "Home",
+  }
 );
 
 export default createAppContainer(RNApp);

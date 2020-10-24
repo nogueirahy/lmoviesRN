@@ -1,20 +1,28 @@
-import React from 'react';
-import { FlatList } from 'react-native';
+import React from "react";
+import { FlatList } from "react-native";
 
-import { Title } from 'react-native-paper';
+import { Title } from "react-native-paper";
 
-import { momentHelper, themoviedbHelper } from '../../../lib';
-import { CardMovie, CardMoviePlaceholder } from '../../../components';
-import { HomeStyle } from './styles';
+import { momentHelper, themoviedbHelper } from "../../../lib";
+import { CardMovie, CardMoviePlaceholder } from "../../../components";
+import { HomeStyle } from "./styles";
 
-function MovieListContainer({
+interface IProps {
+  title: string;
+  data: Array<any>; // TODO add type
+  nextPage: () => void;
+  onPress: () => void;
+  isFetching: boolean;
+}
+
+const MovieListContainer: React.FC<IProps> = ({
   title,
   data = [],
   nextPage = () => undefined,
   onPress = () => undefined,
   isFetching = false,
-}) {
-  function renderItem(item) {
+}) => {
+  const renderItem = (item) => {
     const {
       id,
       voteAverage,
@@ -33,12 +41,12 @@ function MovieListContainer({
         onPress={() => onPress(id)}
       />
     );
-  }
+  };
 
-  function renderFooter() {
+  const renderFooter = () => {
     if (!isFetching) return null;
     return <CardMoviePlaceholder numItems={20} />;
-  }
+  };
 
   return (
     <>
@@ -58,6 +66,6 @@ function MovieListContainer({
       />
     </>
   );
-}
+};
 
 export default MovieListContainer;

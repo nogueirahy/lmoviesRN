@@ -1,4 +1,4 @@
-const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/w500/';
+const BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w500/";
 
 function normalizeData(data) {
   const {
@@ -11,13 +11,23 @@ function normalizeData(data) {
     vote_count: voteCount,
     backdrop_path: backdropPath,
     poster_path: posterPath,
+    release_date: releaseDate,
   } = data;
 
   const backdropUrl = `${BASE_URL_IMAGE}${backdropPath}`;
   const posterUrl = `${BASE_URL_IMAGE}${posterPath}`;
 
   return {
-    id, title, overview, recommendations, genres, voteAverage, voteCount, backdropUrl, posterUrl,
+    id,
+    title,
+    overview,
+    recommendations,
+    genres,
+    voteAverage,
+    voteCount,
+    backdropUrl,
+    posterUrl,
+    releaseDate,
   };
 }
 

@@ -1,16 +1,16 @@
-import { createActions, createReducer } from 'reduxsauce';
+import { createActions, createReducer } from "reduxsauce";
 
 export const { Types, Creators } = createActions({
-  selectedMovie: ['id'],
+  selectedMovie: ["id"],
 
-  upcomingRequest: ['page'],
-  upcomingSuccess: ['upcomingData', 'upcomingTotalPages'],
+  upcomingRequest: ["page"],
+  upcomingSuccess: ["upcomingData", "upcomingTotalPages"],
 
-  popularRequest: ['page'],
-  popularSuccess: ['popularData', 'popularTotalPages'],
+  popularRequest: ["page"],
+  popularSuccess: ["popularData", "popularTotalPages"],
 
-  topRatedRequest: ['page'],
-  topRatedSuccess: ['topRatedData', 'topRatedTotalPages'],
+  topRatedRequest: ["page"],
+  topRatedSuccess: ["topRatedData", "topRatedTotalPages"],
 
   failure: null,
 });
@@ -35,7 +35,10 @@ export const upcomingRequest = (state, { page }) => ({
   isFetching: true,
 });
 
-export const upcomingSuccess = (state, { upcomingData, upcomingTotalPages }) => ({
+export const upcomingSuccess = (
+  state,
+  { upcomingData, upcomingTotalPages }
+) => ({
   ...state,
   upcomingData: [...state.upcomingData, ...upcomingData],
   upcomingTotalPages,
@@ -54,7 +57,6 @@ export const popularSuccess = (state, { popularData, popularTotalPages }) => ({
   popularData: [...state.popularData, ...popularData],
   popularTotalPages,
   isFetching: false,
-
 });
 
 // TopRated reducer
@@ -64,7 +66,10 @@ export const topRatedRequest = (state, { page }) => ({
   isFetching: true,
 });
 
-export const topRatedSuccess = (state, { topRatedData, topRatedTotalPages }) => ({
+export const topRatedSuccess = (
+  state,
+  { topRatedData, topRatedTotalPages }
+) => ({
   ...state,
   topRatedData: [...state.topRatedData, ...topRatedData],
   topRatedTotalPages,
@@ -72,7 +77,7 @@ export const topRatedSuccess = (state, { topRatedData, topRatedTotalPages }) => 
 });
 
 // generic failure reducer
-export const failure = state => ({
+export const failure = (state) => ({
   ...state,
   isFetching: false,
 });

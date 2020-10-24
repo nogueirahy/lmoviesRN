@@ -1,36 +1,36 @@
-import { create } from 'apisauce';
+import { create } from "apisauce";
 
-const api_key = '06154e2a19c809055f4277417e0e0ba1';
+const api_key = "06154e2a19c809055f4277417e0e0ba1";
 const api = create({
-  baseURL: 'https://api.themoviedb.org',
+  baseURL: "https://api.themoviedb.org",
 });
 
-const getUpcoming = (page) =>
-  api.get('/3/movie/upcoming', {
+const getUpcoming = (page: number) =>
+  api.get("/3/movie/upcoming", {
     api_key,
-    language: 'en-US',
+    language: "en-US",
     page,
   });
 
-const getPopular = (page) =>
-  api.get('/3/movie/popular', {
+const getPopular = (page: number) =>
+  api.get("/3/movie/popular", {
     api_key,
-    language: 'en-US',
+    language: "en-US",
     page,
   });
 
-const getTopRated = (page) =>
-  api.get('/3/movie/top_rated', {
+const getTopRated = (page: number) =>
+  api.get("/3/movie/top_rated", {
     api_key,
-    language: 'en-US',
+    language: "en-US",
     page,
   });
 
-const getDetailMovie = (id) =>
+const getDetailMovie = (id: number) =>
   api.get(`/3/movie/${id}`, {
     api_key,
-    language: 'en-US',
-    append_to_response: 'recommendations',
+    language: "en-US",
+    append_to_response: "recommendations",
   });
 
 export default {

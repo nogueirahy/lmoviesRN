@@ -1,1 +1,1 @@
-export const idSelector = state => state.movie.id;
+export const idSelector = (state) => state.movie.id;
