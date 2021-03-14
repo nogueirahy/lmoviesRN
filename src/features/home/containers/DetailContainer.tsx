@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { View, ScrollView, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Title, Paragraph } from "react-native-paper";
@@ -14,12 +14,14 @@ import { HomeStyle } from "./styles";
 const DetailContainer: React.FC = () => {
   const navigate = useNavigation();
   const dispatch = useDispatch();
+  const scrollRef = useRef(null);
   const { data, isFetching } = useSelector((state) => state.movieDetail);
   const movie = themoviedbHelper.normalizeData(data);
 
   function onRequestDetail(id) {
     dispatch(MovieActionCreators.selectedMovie(id));
     dispatch(MovieDetailActionCreators.movieDetailRequest());
+    scrollRef.current?.scrollTo({ y: 0 });
   }
 
   useEffect(() => {
@@ -37,10 +39,10 @@ const DetailContainer: React.FC = () => {
           height: "5.5%",
         }}
       >
-        <Icon name="chevron-back" size={34} color="#fff" />
+        <Icon name="chevron-back" size={32} color="#fff" />
       </TouchableOpacity>
 
-      <ScrollView>
+      <ScrollView ref={scrollRef}>
         <DetailHeader
           title={movie.title}
           voteAverage={movie.voteAverage}
