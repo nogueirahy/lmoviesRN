@@ -5,7 +5,7 @@ export const color = {
   accent: "#00818a",
   surface: "#404b69",
   text: "#e0f2f1",
-  background: "#232931",
+  background: "#121212",
 };
 
 const theme = {
