@@ -37,12 +37,14 @@ const DetailContainer: React.FC = () => {
         <Paragraph>{movie.overview}</Paragraph>
         <GenreChip genres={movie.genres} />
       </View>
-      <MovieList
-        title="Recommended Movies"
-        data={movie.recommendations?.results}
-        onPress={onRequestDetail}
-        isFetching={isFetching}
-      />
+      {Boolean(movie.recommendations?.results.length) && (
+        <MovieList
+          title="Recommended Movies"
+          data={movie.recommendations?.results}
+          onPress={onRequestDetail}
+          isFetching={isFetching}
+        />
+      )}
     </ScrollView>
   );
 };

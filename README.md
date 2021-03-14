@@ -1,4 +1,4 @@
-# leoMovies
+# lmovies
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0e1aba5337bf49f09c01272d0280a4cf)](https://app.codacy.com/app/nogueirahy/leoMovies?utm_source=github.com&utm_medium=referral&utm_content=nogueirahy/leoMovies&utm_campaign=Badge_Grade_Dashboard)
 
@@ -11,7 +11,6 @@ app mobile de filmes
 ## Sumário
 
 - [Estrutura do projeto](#estrutura-do-projeto)
-- [Dependências](#dependencias)
 - [Iniciar a Aplicação](#iniciar-a-aplicacao)
 
 ## Estrutura do projeto
@@ -54,20 +53,6 @@ Abaixo uma explicação da árvore de documentos do projeto:
 ├── package.json
 └── README.md
 ```
-
-## Dependências
-
-- [NodeJS](https://nodejs.org/)
-- [Yarn](https://yarnpkg.com/)
-- [expo-cli](https://docs.expo.io/versions/latest/workflow/expo-cli/)
-- [Android Studio](https://developer.android.com/studio) OU [Genymotion](https://docs.genymotion.com)
-
-Para instalar o `expo-cli` basta usar o Yarn:
-
-```
-yarn global add expo-cli
-```
-
 ## Iniciar a Aplicação
 Rode os comandos seguintes para clonar o projeto e baixar suas dependências:
 
@@ -75,6 +60,8 @@ Rode os comandos seguintes para clonar o projeto e baixar suas dependências:
 git clone git@github.com:nogueirahy/leoMovies.git
 cd leoMovies
 yarn install
+cd ios
+npx pod-install
 ```
 
 Crie um arquivo .env e em seguida adicione sua KEY
@@ -82,13 +69,3 @@ Crie um arquivo .env e em seguida adicione sua KEY
 API_URL=https://api.themoviedb.org
 API_SECRET=<YOUR SECRET KEY>
 ```
-
-Inicie seu emulador de escolha. Após o emulador ser iniciado, rode o comando abaixo para iniciar o servidor do Expo e rodar o projeto no emulador.
-
-```
-expo start
-```
-
-Existe a opção de rodar no celular com o QRCode, para isso baixe o app do Expo (na URL do projeto no site do Expo), ou leia o QRCode disponível após o comando `expo start` ser rodado (necessário que `Tunnel` esteja selecionado na interface web do `expo-cli`).
-
-[Versão para Android](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en) / [Versão para iOS](https://itunes.apple.com/us/app/expo-client/id982107779?mt=8)

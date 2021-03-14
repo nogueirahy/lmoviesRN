@@ -14,7 +14,6 @@ export function* handleUpcomingRequest({ page }) {
   const response = yield call(api.getUpcoming, page);
   if (response.ok) {
     const { results, total_pages: totalPages } = response.data;
-    console.log(response.data);
     yield put(MovieActionCreators.upcomingSuccess(results, totalPages));
   } else {
     yield put(MovieActionCreators.failure());
