@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 
 interface IProps {
-  action: () => void;
+  action: (page: number) => void;
   totalPages: number;
 }
 
