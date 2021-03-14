@@ -5,7 +5,7 @@
 app mobile de filmes
 
 
-![](https://i.ibb.co/Cmfq6ck/one.png)    |   ![](https://i.ibb.co/1T59bL9/two.png)|
+![](https://i.ibb.co/kqbPcHN/Captura-de-Tela-2021-03-14-s-12-45-06.png)    |   ![](https://i.ibb.co/ZJXxKxf/Captura-de-Tela-2021-03-14-s-12-45-20.png)|
 :---------------------------------------:|:--------------------------------------:|
 
 ## Sumário
@@ -37,9 +37,9 @@ Abaixo uma explicação da árvore de documentos do projeto:
 │   ├── lib - Biblioteca de arquivos de apoio;
 │   ├── service - Serviços gerais do app (atualização do app, integrações, etc.);
 │   ├── navigation - Dados de navegação do app.
-│   │   ├── NavigationHelpers.js -  Classe utilizada para configurar a navegação;
-│   │   ├── NavigationService.js - Serviços de navegação;
-│   │   └── NavigationStack.js - Contem a navegação entre os containers do projeto;
+│   │
+│   │   
+│   │   
 │   └── store - Todo o setup da store do projeto;
 │       ├── reducers - configuração dos reducers gerais do projeto.
 │       ├── configureStore - Configurações da store.
@@ -62,6 +62,8 @@ cd leoMovies
 yarn install
 cd ios
 npx pod-install
+yarn ios
+yarn android
 ```
 
 Crie um arquivo .env e em seguida adicione sua KEY

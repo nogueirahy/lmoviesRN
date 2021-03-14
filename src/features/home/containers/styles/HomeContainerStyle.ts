@@ -15,7 +15,7 @@ export default StyleSheet.create({
   contentFlatlist: {
     justifyContent: "space-evenly",
     paddingLeft: 16,
-    paddingBottom: 28,
+    paddingBottom: 6,
   },
   contentDetailBody: {
     flex: 1,
