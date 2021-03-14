@@ -4,7 +4,7 @@ import { FlatList } from "react-native";
 import { Title } from "react-native-paper";
 
 import { momentHelper, themoviedbHelper } from "../../../lib";
-import { CardMovie, CardMoviePlaceholder } from "../../../components";
+import { CardMovie } from "../../../components";
 import { HomeStyle } from "./styles";
 
 interface IProps {
@@ -42,16 +42,9 @@ const MovieListContainer: React.FC<IProps> = ({
       />
     );
   };
-
-  const renderFooter = () => {
-    if (!isFetching) return null;
-    return <CardMoviePlaceholder numItems={20} />;
-  };
-
   return (
     <>
       <Title style={HomeStyle.title}>{title}</Title>
-
       <FlatList
         contentContainerStyle={HomeStyle.contentFlatlist}
         data={data}
@@ -59,7 +52,6 @@ const MovieListContainer: React.FC<IProps> = ({
         renderItem={({ item }) => renderItem(item)}
         onEndReached={nextPage}
         onEndReachedThreshold={0.2}
-        ListFooterComponent={renderFooter}
         horizontal
         showsHorizontalScrollIndicator={false}
         testID="movieList"

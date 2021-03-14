@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { ScrollView, SafeAreaView, StatusBar } from "react-native";
+import { ScrollView } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import { Container } from "../../../components";
 import { useNextPage } from "../../../hooks";
 import { MovieActionCreators } from "../ducks";
 import MovieList from "./MovieListContainer";
@@ -45,7 +46,7 @@ const HomeContainer: React.FC = () => {
   };
 
   return (
-    <SafeAreaView>
+    <Container>
       <ScrollView style={HomeStyle.container}>
         <MovieList
           isFetching={isFetching}
@@ -69,7 +70,7 @@ const HomeContainer: React.FC = () => {
           onPress={doNavigateToDetails}
         />
       </ScrollView>
-    </SafeAreaView>
+    </Container>
   );
 };
 
