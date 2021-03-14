@@ -5,7 +5,7 @@
 app mobile de filmes
 
 
-![](https://i.ibb.co/kqbPcHN/Captura-de-Tela-2021-03-14-s-12-45-06.png)    |   ![](https://i.ibb.co/ZJXxKxf/Captura-de-Tela-2021-03-14-s-12-45-20.png)|
+![](https://i.ibb.co/cNmZcdQ/Captura-de-Tela-2021-03-14-s-16-44-21.png)    |   ![](https://i.ibb.co/0rKC5VJ/Captura-de-Tela-2021-03-14-s-16-46-33.png)|
 :---------------------------------------:|:--------------------------------------:|
 
 ## Sumário
