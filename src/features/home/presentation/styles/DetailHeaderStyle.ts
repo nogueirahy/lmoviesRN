@@ -1,30 +1,28 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
     flex: 0.8,
   },
   imageBackground: {
-    width: '100%',
+    width: "100%",
     height: 250,
     opacity: 0.3,
   },
   contentContainer: {
-    position: 'absolute',
-    bottom: '5%',
-    paddingHorizontal: 20,
+    padding: 20,
   },
   title: {
     fontSize: 28,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   subTitleContainer: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   subTitleText: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     paddingHorizontal: 2,
   },
 });

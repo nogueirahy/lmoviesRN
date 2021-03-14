@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
-import { ScrollView, SafeAreaView } from "react-native";
-
+import { ScrollView, SafeAreaView, StatusBar } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-
+import { useNavigation } from "@react-navigation/native";
 import { useNextPage } from "../../../hooks";
-import MovieList from "./MovieListContainer";
 import { MovieActionCreators } from "../ducks";
-import { navigateToDetails } from "../../../navigation/NavigationHelpers";
+import MovieList from "./MovieListContainer";
 import { HomeStyle } from "./styles";
 
 const HomeContainer: React.FC = () => {
+  const { navigate } = useNavigation();
   const dispatch = useDispatch();
   const {
     upcomingData,
@@ -42,7 +41,7 @@ const HomeContainer: React.FC = () => {
 
   const doNavigateToDetails = (id: string) => {
     dispatch(MovieActionCreators.selectedMovie(id));
-    navigateToDetails();
+    navigate("Details");
   };
 
   return (

@@ -1,15 +1,25 @@
 import React from "react";
 
-import NavigationStack from "./NavigationStack";
-import NavigationService from "./NavigationService";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-function AppNavigator() {
+import { Home, Details } from "../features/home/containers";
+
+const Stack = createStackNavigator();
+
+export default () => {
   return (
-    <NavigationStack
-      ref={(navigatorRef) => {
-        NavigationService.setTopLevelNavigator(navigatorRef);
-      }}
-    />
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen name="Details" component={Details} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
-export default AppNavigator;
+};

@@ -18,8 +18,8 @@ interface IProps {
 const MovieListContainer: React.FC<IProps> = ({
   title,
   data = [],
-  nextPage = () => undefined,
-  onPress = () => undefined,
+  nextPage,
+  onPress,
   isFetching = false,
 }) => {
   const renderItem = (item) => {
