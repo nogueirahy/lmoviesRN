@@ -1,4 +1,5 @@
+import Container from "./Container";
 import CardMovie from "./CardMovie";
-import CardMoviePlaceholder from "./CardMoviePlaceholder";
+import CardMoviePlaceholder from "./CardMovie/placeholder";
 
-export { CardMovie, CardMoviePlaceholder };
+export { Container, CardMovie, CardMoviePlaceholder };
