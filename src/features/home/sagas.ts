@@ -1,61 +1,84 @@
-import { put, call, select, takeLatest } from "redux-saga/effects";
-
+import { put, call, select, takeLatest, fork, all } from "redux-saga/effects";
+import { ApiOkResponse } from "apisauce";
 import { idSelector } from "./selectors";
 import {
-  MovieActionCreators,
+  MovieActionCreators as MovieAction,
   MovieTypes,
   MovieDetailActionCreators,
   MovieDetailTypes,
 } from "./ducks";
 
 import { api } from "../../api";
+import { IParams, TResponse } from "./interfaces";
 
-export function* handleUpcomingRequest({ page }) {
-  const response = yield call(api.getUpcoming, page);
-  if (response.ok) {
-    const { results, total_pages: totalPages } = response.data;
-    yield put(MovieActionCreators.upcomingSuccess(results, totalPages));
-  } else {
-    yield put(MovieActionCreators.failure());
+export function* handleHomeRequest({ page }: IParams) {
+  try {
+    yield all([
+      fork(handleUpcomingRequest, page),
+      fork(handleTvPopularRequest, page),
+      fork(handlePopularRequest, page),
+      fork(handleTopRatedRequest, page),
+    ]);
+  } catch (err) {
+    yield put(MovieAction.failure());
   }
 }
 
-export function* handlePopularRequest({ page }) {
-  const response = yield call(api.getPopular, page);
-  if (response.ok) {
-    const { results, total_pages: totalPages } = response.data;
-
-    yield put(MovieActionCreators.popularSuccess(results, totalPages));
-  } else {
-    yield put(MovieActionCreators.failure());
+export function* handleUpcomingRequest({ page }: IParams) {
+  try {
+    const { data }: TResponse = yield call(api.getUpcoming, page);
+    const { results, total_pages: totalPages } = data!;
+    yield put(MovieAction.upcomingSuccess(results, totalPages));
+  } catch {
+    yield put(MovieAction.failure());
   }
 }
 
-export function* handleTopRatedRequest({ page }) {
-  const response = yield call(api.getTopRated, page);
-  if (response.ok) {
-    const { results, total_pages: totalPages } = response.data;
+export function* handlePopularRequest({ page }: IParams) {
+  try {
+    const { data }: TResponse = yield call(api.getPopular, page);
+    const { results, total_pages: totalPages } = data!;
+    yield put(MovieAction.popularSuccess(results, totalPages));
+  } catch {
+    yield put(MovieAction.failure());
+  }
+}
 
-    yield put(MovieActionCreators.topRatedSuccess(results, totalPages));
-  } else {
-    yield put(MovieActionCreators.failure());
+export function* handleTopRatedRequest({ page }: IParams) {
+  try {
+    const { data }: TResponse = yield call(api.getTopRated, page);
+    const { results, total_pages: totalPages } = data!;
+    yield put(MovieAction.topRatedSuccess(results, totalPages));
+  } catch {
+    yield put(MovieAction.failure());
   }
 }
 
 export function* handleMovieDetailRequest() {
-  const id = yield select(idSelector);
-  const response = yield call(api.getDetailMovie, id);
-  if (response.ok) {
-    yield put(MovieDetailActionCreators.movieDetailSuccess(response.data));
-  } else {
-    yield put(MovieActionCreators.failure());
+  try {
+    const id: number = yield select(idSelector);
+    const { data }: TResponse = yield call(api.getDetailMovie, id);
+    yield put(MovieDetailActionCreators.movieDetailSuccess(data));
+  } catch {
+    yield put(MovieAction.failure());
+  }
+}
+
+export function* handleTvPopularRequest({ page }: IParams) {
+  try {
+    const { data }: TResponse = yield call(api.getTvPopular, page);
+    const { results, total_pages: totalPages } = data!;
+    yield put(MovieAction.tvPopularSuccess(results, totalPages));
+  } catch {
+    yield put(MovieAction.failure());
   }
 }
 
 export const homeSagas = [
+  takeLatest(MovieTypes.HOME_REQUEST, handleHomeRequest),
   takeLatest(MovieTypes.UPCOMING_REQUEST, handleUpcomingRequest),
   takeLatest(MovieTypes.POPULAR_REQUEST, handlePopularRequest),
   takeLatest(MovieTypes.TOP_RATED_REQUEST, handleTopRatedRequest),
-
+  takeLatest(MovieTypes.TV_POPULAR_REQUEST, handleTvPopularRequest),
   takeLatest(MovieDetailTypes.MOVIE_DETAIL_REQUEST, handleMovieDetailRequest),
 ];

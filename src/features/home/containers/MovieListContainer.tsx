@@ -6,13 +6,11 @@ import { Title } from "react-native-paper";
 import { momentHelper, themoviedbHelper } from "../../../lib";
 import { CardMovie } from "../../../components";
 import { HomeStyle } from "./styles";
-
 interface IProps {
   title: string;
   data: Array<any>; // TODO add type
   nextPage: () => void;
-  onPress: () => void;
-  isFetching: boolean;
+  onPress: (id: string) => void;
 }
 
 const MovieListContainer: React.FC<IProps> = ({
@@ -20,7 +18,6 @@ const MovieListContainer: React.FC<IProps> = ({
   data = [],
   nextPage,
   onPress,
-  isFetching = false,
 }) => {
   const renderItem = (item) => {
     const {
@@ -42,6 +39,7 @@ const MovieListContainer: React.FC<IProps> = ({
       />
     );
   };
+
   return (
     <>
       <Title style={HomeStyle.title}>{title}</Title>
