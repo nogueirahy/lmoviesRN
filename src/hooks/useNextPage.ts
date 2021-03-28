@@ -6,9 +6,11 @@ interface IProps {
   totalPages: number;
 }
 
+const DEFAULT_NEXT_PAGE = 2;
+
 export default function useNextPage({ action, totalPages }: IProps) {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(DEFAULT_NEXT_PAGE);
   const [canLoadMore, setCanLoadMore] = useState(true);
   const isEndPage = page === totalPages;
 
