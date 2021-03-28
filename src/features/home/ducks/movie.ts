@@ -3,6 +3,8 @@ import { createActions, createReducer } from "reduxsauce";
 export const { Types, Creators } = createActions({
   selectedMovie: ["id"],
 
+  homeRequest: ["page"],
+
   upcomingRequest: ["page"],
   upcomingSuccess: ["upcomingData", "upcomingTotalPages"],
 
@@ -12,6 +14,9 @@ export const { Types, Creators } = createActions({
   topRatedRequest: ["page"],
   topRatedSuccess: ["topRatedData", "topRatedTotalPages"],
 
+  tvPopularRequest: ["page"],
+  tvPopularSuccess: ["tvPopularData", "tvPopularTotalPages"],
+
   failure: null,
 });
 
@@ -19,8 +24,8 @@ export const INITIAL_STATE = {
   upcomingData: [],
   popularData: [],
   topRatedData: [],
+  tvPopularData: [],
   selectedMovie: null,
-  isFetching: true,
 };
 
 export const selectedMovie = (state, { id }) => ({
@@ -28,11 +33,14 @@ export const selectedMovie = (state, { id }) => ({
   id,
 });
 
+export const homeRequest = (state) => ({
+  ...state,
+});
+
 // Upcoming reducer
 export const upcomingRequest = (state, { page }) => ({
   ...state,
   page,
-  isFetching: true,
 });
 
 export const upcomingSuccess = (
@@ -42,28 +50,24 @@ export const upcomingSuccess = (
   ...state,
   upcomingData: [...state.upcomingData, ...upcomingData],
   upcomingTotalPages,
-  isFetching: false,
 });
 
 // Popular reducer
 export const popularRequest = (state, { page }) => ({
   ...state,
   page,
-  isFetching: true,
 });
 
 export const popularSuccess = (state, { popularData, popularTotalPages }) => ({
   ...state,
   popularData: [...state.popularData, ...popularData],
   popularTotalPages,
-  isFetching: false,
 });
 
 // TopRated reducer
 export const topRatedRequest = (state, { page }) => ({
   ...state,
   page,
-  isFetching: true,
 });
 
 export const topRatedSuccess = (
@@ -73,7 +77,21 @@ export const topRatedSuccess = (
   ...state,
   topRatedData: [...state.topRatedData, ...topRatedData],
   topRatedTotalPages,
-  isFetching: false,
+});
+
+// TvPopular reducer
+export const tvPopularRequest = (state, { page }) => ({
+  ...state,
+  page,
+});
+
+export const tvPopularSuccess = (
+  state,
+  { tvPopularData, tvPopularTotalPages }
+) => ({
+  ...state,
+  tvPopularData: [...state.tvPopularData, ...tvPopularData],
+  tvPopularTotalPages,
 });
 
 // generic failure reducer
@@ -84,6 +102,7 @@ export const failure = (state) => ({
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.SELECTED_MOVIE]: selectedMovie,
+  [Types.HOME_REQUEST]: homeRequest,
 
   [Types.UPCOMING_REQUEST]: upcomingRequest,
   [Types.UPCOMING_SUCCESS]: upcomingSuccess,
@@ -93,6 +112,9 @@ export const reducer = createReducer(INITIAL_STATE, {
 
   [Types.TOP_RATED_REQUEST]: topRatedRequest,
   [Types.TOP_RATED_SUCCESS]: topRatedSuccess,
+
+  [Types.TV_POPULAR_REQUEST]: tvPopularRequest,
+  [Types.TV_POPULAR_SUCCESS]: tvPopularSuccess,
 
   [Types.FAILURE]: failure,
 });

@@ -5,6 +5,7 @@ const api = create({
   baseURL: "https://api.themoviedb.org",
 });
 
+/* Movies */
 const getUpcoming = (page: number) =>
   api.get("/3/movie/upcoming", {
     api_key,
@@ -33,9 +34,18 @@ const getDetailMovie = (id: number) =>
     append_to_response: "recommendations",
   });
 
+/* Series */
+const getTvPopular = (page: number) =>
+  api.get(`3/tv/popular`, {
+    api_key,
+    language: "en-US",
+    page,
+  });
+
 export default {
   getUpcoming,
   getPopular,
   getTopRated,
   getDetailMovie,
+  getTvPopular,
 };

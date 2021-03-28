@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ScrollView } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
@@ -18,56 +18,65 @@ const HomeContainer: React.FC = () => {
     popularTotalPages,
     topRatedData,
     topRatedTotalPages,
-    isFetching,
+    tvPopularData,
+    tvPopularTotalPages,
   } = useSelector((state) => state.movie);
 
   const upcomingNextPage = useNextPage({
     action: MovieActionCreators.upcomingRequest,
     totalPages: upcomingTotalPages,
   });
+
   const popularNextPage = useNextPage({
     action: MovieActionCreators.popularRequest,
     totalPages: popularTotalPages,
   });
+
   const topRatedNextPage = useNextPage({
     action: MovieActionCreators.topRatedRequest,
     totalPages: topRatedTotalPages,
   });
 
-  useEffect(() => {
-    upcomingNextPage();
-    popularNextPage();
-    topRatedNextPage();
-  }, []);
+  const tvPopularNextPage = useNextPage({
+    action: MovieActionCreators.tvPopularRequest,
+    totalPages: tvPopularTotalPages,
+  });
 
   const doNavigateToDetails = (id: string) => {
     dispatch(MovieActionCreators.selectedMovie(id));
     navigate("Details");
   };
 
+  React.useEffect(() => {
+    dispatch(MovieActionCreators.homeRequest({ page: 1 }));
+  }, []);
+
   return (
     <Container>
       <ScrollView style={HomeStyle.container}>
         <MovieList
-          isFetching={isFetching}
           title="Upcoming Movies"
           data={upcomingData}
           nextPage={upcomingNextPage}
           onPress={doNavigateToDetails}
         />
         <MovieList
-          isFetching={isFetching}
-          title="Popular"
+          title="Popular Movie"
           data={popularData}
           nextPage={popularNextPage}
           onPress={doNavigateToDetails}
         />
         <MovieList
-          isFetching={isFetching}
-          title="Top Rated"
+          title="Top Rated Movie"
           data={topRatedData}
           nextPage={topRatedNextPage}
           onPress={doNavigateToDetails}
+        />
+        <MovieList
+          title="Popular Series"
+          data={tvPopularData}
+          nextPage={tvPopularNextPage}
+          onPress={() => undefined /* TODO create series details */}
         />
       </ScrollView>
     </Container>
