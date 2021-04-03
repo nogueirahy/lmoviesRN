@@ -23,6 +23,7 @@ export default StyleSheet.create({
   },
   subTitleText: {
     fontWeight: "bold",
-    paddingHorizontal: 2,
+    color: "green",
+    paddingHorizontal: 6,
   },
 });

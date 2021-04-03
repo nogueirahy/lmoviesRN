@@ -28,7 +28,10 @@ export function* handleUpcomingRequest({ page }: IParams) {
   try {
     const { data }: TResponse = yield call(api.getUpcoming, page);
     const { results, total_pages: totalPages } = data!;
-    yield put(MovieAction.upcomingSuccess(results, totalPages));
+    const newResults = results.filter(
+      (data) => new Date(data.release_date) > new Date()
+    );
+    yield put(MovieAction.upcomingSuccess(newResults, totalPages));
   } catch {
     yield put(MovieAction.failure());
   }
@@ -64,11 +67,32 @@ export function* handleMovieDetailRequest() {
   }
 }
 
+/*
+export function* handleSimilarRequest() {
+  try {
+    const id: number = yield select(idSelector);
+    const { data }: TResponse = yield call(api.getSimilarMovie, id);
+    yield put(MovieDetailActionCreators.movieDetailSuccess(data));
+  } catch {
+    yield put(MovieAction.failure());
+  }
+}*/
+
 export function* handleTvPopularRequest({ page }: IParams) {
   try {
     const { data }: TResponse = yield call(api.getTvPopular, page);
     const { results, total_pages: totalPages } = data!;
     yield put(MovieAction.tvPopularSuccess(results, totalPages));
+  } catch {
+    yield put(MovieAction.failure());
+  }
+}
+
+export function* handleTvDetailsRequest() {
+  try {
+    const id: number = yield select(idSelector);
+    const { data }: TResponse = yield call(api.getTvDetails, id);
+    yield put(MovieDetailActionCreators.tvDetailSuccess(data));
   } catch {
     yield put(MovieAction.failure());
   }
@@ -81,4 +105,5 @@ export const homeSagas = [
   takeLatest(MovieTypes.TOP_RATED_REQUEST, handleTopRatedRequest),
   takeLatest(MovieTypes.TV_POPULAR_REQUEST, handleTvPopularRequest),
   takeLatest(MovieDetailTypes.MOVIE_DETAIL_REQUEST, handleMovieDetailRequest),
+  takeLatest(MovieDetailTypes.TV_DETAIL_REQUEST, handleTvDetailsRequest),
 ];
