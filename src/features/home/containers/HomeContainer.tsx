@@ -19,6 +19,8 @@ const HomeContainer: React.FC = () => {
     topRatedTotalPages,
     tvPopularData,
     tvPopularTotalPages,
+    tvTopRatedData,
+    tvTopRatedTotalPages,
   } = useSelector((state) => state.movie);
 
   const upcomingNextPage = useNextPage({
@@ -39,6 +41,11 @@ const HomeContainer: React.FC = () => {
   const tvPopularNextPage = useNextPage({
     action: MovieActionCreators.tvPopularRequest,
     totalPages: tvPopularTotalPages,
+  });
+
+  const tvTopRatedNextPage = useNextPage({
+    action: MovieActionCreators.tvTopRatedRequest,
+    totalPages: tvTopRatedTotalPages,
   });
 
   const doNavigateToMovieDetails = (id: string) => {
@@ -82,6 +89,13 @@ const HomeContainer: React.FC = () => {
           title="Popular Series"
           data={tvPopularData}
           nextPage={tvPopularNextPage}
+          onPress={doNavigateToTvDetails}
+        />
+
+        <MovieList
+          title="Top Rated Series"
+          data={tvTopRatedData}
+          nextPage={tvTopRatedNextPage}
           onPress={doNavigateToTvDetails}
         />
       </ScrollView>

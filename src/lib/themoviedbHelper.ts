@@ -3,6 +3,7 @@ const BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w500/";
 function normalizeData(data) {
   const {
     id,
+    name,
     title,
     overview,
     similar,
@@ -19,6 +20,7 @@ function normalizeData(data) {
 
   return {
     id,
+    name,
     title,
     overview,
     similar,

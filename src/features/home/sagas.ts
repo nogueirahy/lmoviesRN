@@ -1,5 +1,4 @@
 import { put, call, select, takeLatest, fork, all } from "redux-saga/effects";
-import { ApiOkResponse } from "apisauce";
 import { idSelector } from "./selectors";
 import {
   MovieActionCreators as MovieAction,
@@ -15,9 +14,10 @@ export function* handleHomeRequest({ page }: IParams) {
   try {
     yield all([
       fork(handleUpcomingRequest, page),
-      fork(handleTvPopularRequest, page),
       fork(handlePopularRequest, page),
       fork(handleTopRatedRequest, page),
+      fork(handleTvPopularRequest, page),
+      fork(handleTvTopRatedRequest, page),
     ]);
   } catch (err) {
     yield put(MovieAction.failure());
@@ -88,6 +88,16 @@ export function* handleTvPopularRequest({ page }: IParams) {
   }
 }
 
+export function* handleTvTopRatedRequest({ page }: IParams) {
+  try {
+    const { data }: TResponse = yield call(api.getTvTopRated, page);
+    const { results, total_pages: totalPages } = data!;
+    yield put(MovieAction.tvTopRatedSuccess(results, totalPages));
+  } catch {
+    yield put(MovieAction.failure());
+  }
+}
+
 export function* handleTvDetailsRequest() {
   try {
     const id: number = yield select(idSelector);
@@ -104,6 +114,8 @@ export const homeSagas = [
   takeLatest(MovieTypes.POPULAR_REQUEST, handlePopularRequest),
   takeLatest(MovieTypes.TOP_RATED_REQUEST, handleTopRatedRequest),
   takeLatest(MovieTypes.TV_POPULAR_REQUEST, handleTvPopularRequest),
+  takeLatest(MovieTypes.TV_TOP_RATED_REQUEST, handleTvTopRatedRequest),
+
   takeLatest(MovieDetailTypes.MOVIE_DETAIL_REQUEST, handleMovieDetailRequest),
   takeLatest(MovieDetailTypes.TV_DETAIL_REQUEST, handleTvDetailsRequest),
 ];

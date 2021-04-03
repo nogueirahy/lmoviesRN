@@ -48,6 +48,13 @@ const getTvPopular = (page: number) =>
     page,
   });
 
+const getTvTopRated = (page: number) =>
+  api.get(`3/tv/top_rated`, {
+    api_key,
+    language: "en-US",
+    page,
+  });
+
 const getTvDetails = (id: number) =>
   api.get(`3/tv/${id}`, {
     api_key,
@@ -62,5 +69,6 @@ export default {
   getDetailMovie,
   getSimilarMovie,
   getTvPopular,
+  getTvTopRated,
   getTvDetails,
 };
