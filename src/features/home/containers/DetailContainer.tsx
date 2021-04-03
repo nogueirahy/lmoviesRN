@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Icon from "react-native-vector-icons/Ionicons";
 import { themoviedbHelper } from "../../../lib";
 import { Container } from "../../../components";
-import MovieList from "./MovieListContainer";
+import MovieList from "../presentation/MovieList";
 import { GenreChip, DetailHeader } from "../presentation";
 import { MovieActionCreators, MovieDetailActionCreators } from "../ducks";
 import { HomeStyle } from "./styles";
@@ -15,7 +15,8 @@ const DetailContainer: React.FC = () => {
   const navigate = useNavigation();
   const dispatch = useDispatch();
   const scrollRef = useRef(null);
-  const { data, isFetching } = useSelector((state) => state.movieDetail);
+  const { data } = useSelector((state) => state.movieDetail);
+
   const movie = themoviedbHelper.normalizeData(data);
 
   function onRequestDetail(id) {
@@ -23,10 +24,6 @@ const DetailContainer: React.FC = () => {
     dispatch(MovieDetailActionCreators.movieDetailRequest());
     scrollRef.current?.scrollTo({ y: 0 });
   }
-
-  useEffect(() => {
-    dispatch(MovieDetailActionCreators.movieDetailRequest());
-  }, []);
 
   return (
     <Container>
@@ -46,7 +43,7 @@ const DetailContainer: React.FC = () => {
         <DetailHeader
           title={movie.title}
           voteAverage={movie.voteAverage}
-          voteCount={movie.voteCount}
+          videos={movie.videos}
           backdropUrl={movie.backdropUrl}
         />
         <View style={HomeStyle.contentDetailBody}>
@@ -54,12 +51,11 @@ const DetailContainer: React.FC = () => {
           <Paragraph>{movie.overview}</Paragraph>
           <GenreChip genres={movie.genres} />
         </View>
-        {Boolean(movie.recommendations?.results.length) && (
+        {Boolean(movie.similar?.results.length) && (
           <MovieList
-            title="Recommended Movies"
-            data={movie.recommendations?.results}
+            title="Similar Movies"
+            data={movie.similar?.results}
             onPress={onRequestDetail}
-            isFetching={isFetching}
           />
         )}
       </ScrollView>

@@ -4,9 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { Container } from "../../../components";
 import { useNextPage } from "../../../hooks";
-import { MovieActionCreators } from "../ducks";
-import MovieList from "./MovieListContainer";
-import { HomeStyle } from "./styles";
+import { MovieActionCreators, MovieDetailActionCreators } from "../ducks";
+import MovieList from "../presentation/MovieList";
 
 const HomeContainer: React.FC = () => {
   const { navigate } = useNavigation();
@@ -42,8 +41,15 @@ const HomeContainer: React.FC = () => {
     totalPages: tvPopularTotalPages,
   });
 
-  const doNavigateToDetails = (id: string) => {
+  const doNavigateToMovieDetails = (id: string) => {
     dispatch(MovieActionCreators.selectedMovie(id));
+    dispatch(MovieDetailActionCreators.movieDetailRequest());
+    navigate("Details");
+  };
+
+  const doNavigateToTvDetails = (id: string) => {
+    dispatch(MovieActionCreators.selectedMovie(id));
+    dispatch(MovieDetailActionCreators.tvDetailRequest());
     navigate("Details");
   };
 
@@ -53,30 +59,30 @@ const HomeContainer: React.FC = () => {
 
   return (
     <Container>
-      <ScrollView style={HomeStyle.container}>
+      <ScrollView>
         <MovieList
           title="Upcoming Movies"
           data={upcomingData}
           nextPage={upcomingNextPage}
-          onPress={doNavigateToDetails}
+          onPress={doNavigateToMovieDetails}
         />
         <MovieList
           title="Popular Movie"
           data={popularData}
           nextPage={popularNextPage}
-          onPress={doNavigateToDetails}
+          onPress={doNavigateToMovieDetails}
         />
         <MovieList
           title="Top Rated Movie"
           data={topRatedData}
           nextPage={topRatedNextPage}
-          onPress={doNavigateToDetails}
+          onPress={doNavigateToMovieDetails}
         />
         <MovieList
           title="Popular Series"
           data={tvPopularData}
           nextPage={tvPopularNextPage}
-          onPress={() => undefined /* TODO create series details */}
+          onPress={doNavigateToTvDetails}
         />
       </ScrollView>
     </Container>
