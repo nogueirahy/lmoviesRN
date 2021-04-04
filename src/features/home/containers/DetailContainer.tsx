@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { View, ScrollView, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Title, Paragraph } from "react-native-paper";
 import { useSelector } from "react-redux";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -12,12 +12,16 @@ import { HomeStyle } from "./styles";
 
 const DetailContainer: React.FC = () => {
   const navigate = useNavigation();
+  const route = useRoute();
   const scrollRef = useRef(null);
   const { data } = useSelector((state) => state.movieDetail);
   const movie = themoviedbHelper.normalizeData(data);
 
-  const onRequestDetail = (id) => {
+  const requestDetail = route.params?.requestDetail;
+
+  const onRequestDetail = (id: string) => {
     scrollRef.current?.scrollTo({ y: 0 });
+    requestDetail(id);
   };
 
   return (

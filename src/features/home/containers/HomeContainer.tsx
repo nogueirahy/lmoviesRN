@@ -48,16 +48,24 @@ const HomeContainer: React.FC = () => {
     totalPages: tvTopRatedTotalPages,
   });
 
-  const doNavigateToMovieDetails = (id: string) => {
-    dispatch(MovieActionCreators.selectedMovie(id));
-    dispatch(MovieDetailActionCreators.movieDetailRequest());
-    navigate("Details");
+  const doNavigateToMovieDetails = (value: string) => {
+    const requestDetail = (id: string) => {
+      dispatch(MovieActionCreators.selectedMovie(id));
+      dispatch(MovieDetailActionCreators.movieDetailRequest());
+    };
+
+    requestDetail(value);
+    navigate("Details", { requestDetail });
   };
 
-  const doNavigateToTvDetails = (id: string) => {
-    dispatch(MovieActionCreators.selectedMovie(id));
-    dispatch(MovieDetailActionCreators.tvDetailRequest());
-    navigate("Details");
+  const doNavigateToTvDetails = (value: string) => {
+    const requestDetail = (id: string) => {
+      dispatch(MovieActionCreators.selectedMovie(id));
+      dispatch(MovieDetailActionCreators.tvDetailRequest());
+    };
+
+    requestDetail(value);
+    navigate("Details", { requestDetail });
   };
 
   React.useEffect(() => {

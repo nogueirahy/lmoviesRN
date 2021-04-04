@@ -29,7 +29,10 @@ export function* handleUpcomingRequest({ page }: IParams) {
     const { data }: TResponse = yield call(api.getUpcoming, page);
     const { results, total_pages: totalPages } = data!;
     const newResults = results.filter(
-      (data) => new Date(data.release_date) > new Date()
+      (data) =>
+        new Date(data.release_date) > new Date() &&
+        Boolean(data.poster_path) &&
+        Boolean(data.backdrop_path)
     );
     yield put(MovieAction.upcomingSuccess(newResults, totalPages));
   } catch {
@@ -67,17 +70,6 @@ export function* handleMovieDetailRequest() {
   }
 }
 
-/*
-export function* handleSimilarRequest() {
-  try {
-    const id: number = yield select(idSelector);
-    const { data }: TResponse = yield call(api.getSimilarMovie, id);
-    yield put(MovieDetailActionCreators.movieDetailSuccess(data));
-  } catch {
-    yield put(MovieAction.failure());
-  }
-}*/
-
 export function* handleTvPopularRequest({ page }: IParams) {
   try {
     const { data }: TResponse = yield call(api.getTvPopular, page);
@@ -110,12 +102,13 @@ export function* handleTvDetailsRequest() {
 
 export const homeSagas = [
   takeLatest(MovieTypes.HOME_REQUEST, handleHomeRequest),
+
   takeLatest(MovieTypes.UPCOMING_REQUEST, handleUpcomingRequest),
   takeLatest(MovieTypes.POPULAR_REQUEST, handlePopularRequest),
   takeLatest(MovieTypes.TOP_RATED_REQUEST, handleTopRatedRequest),
   takeLatest(MovieTypes.TV_POPULAR_REQUEST, handleTvPopularRequest),
   takeLatest(MovieTypes.TV_TOP_RATED_REQUEST, handleTvTopRatedRequest),
 
-  takeLatest(MovieDetailTypes.MOVIE_DETAIL_REQUEST, handleMovieDetailRequest),
   takeLatest(MovieDetailTypes.TV_DETAIL_REQUEST, handleTvDetailsRequest),
+  takeLatest(MovieDetailTypes.MOVIE_DETAIL_REQUEST, handleMovieDetailRequest),
 ];
