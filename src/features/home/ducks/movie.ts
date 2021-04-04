@@ -17,6 +17,9 @@ export const { Types, Creators } = createActions({
   tvPopularRequest: ["page"],
   tvPopularSuccess: ["tvPopularData", "tvPopularTotalPages"],
 
+  tvTopRatedRequest: ["page"],
+  tvTopRatedSuccess: ["tvTopRatedData", "tvTopRatedTotalPages"],
+
   failure: null,
 });
 
@@ -25,6 +28,7 @@ export const INITIAL_STATE = {
   popularData: [],
   topRatedData: [],
   tvPopularData: [],
+  tvTopRatedData: [],
   selectedMovie: null,
 };
 
@@ -94,6 +98,21 @@ export const tvPopularSuccess = (
   tvPopularTotalPages,
 });
 
+// TvTopRated reducer
+export const tvTopRatedRequest = (state, { page }) => ({
+  ...state,
+  page,
+});
+
+export const tvTopRatedSuccess = (
+  state,
+  { tvTopRatedData, tvTopRatedTotalPages }
+) => ({
+  ...state,
+  tvTopRatedData: [...state.tvTopRatedData, ...tvTopRatedData],
+  tvTopRatedTotalPages,
+});
+
 // generic failure reducer
 export const failure = (state) => ({
   ...state,
@@ -115,6 +134,9 @@ export const reducer = createReducer(INITIAL_STATE, {
 
   [Types.TV_POPULAR_REQUEST]: tvPopularRequest,
   [Types.TV_POPULAR_SUCCESS]: tvPopularSuccess,
+
+  [Types.TV_TOP_RATED_REQUEST]: tvTopRatedRequest,
+  [Types.TV_TOP_RATED_SUCCESS]: tvTopRatedSuccess,
 
   [Types.FAILURE]: failure,
 });

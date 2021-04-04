@@ -3,12 +3,13 @@ const BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w500/";
 function normalizeData(data) {
   const {
     id,
+    name,
     title,
     overview,
-    recommendations,
+    similar,
+    videos,
     genres,
     vote_average: voteAverage,
-    vote_count: voteCount,
     backdrop_path: backdropPath,
     poster_path: posterPath,
     release_date: releaseDate,
@@ -19,12 +20,13 @@ function normalizeData(data) {
 
   return {
     id,
+    name,
     title,
     overview,
-    recommendations,
+    similar,
+    videos,
     genres,
     voteAverage,
-    voteCount,
     backdropUrl,
     posterUrl,
     releaseDate,
