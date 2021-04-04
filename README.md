@@ -4,9 +4,9 @@
 
 app mobile de filmes
 
+| ![](https://i.ibb.co/888ZLzj/Captura-de-Tela-2021-04-03-s-21-40-09.png) | ![](https://i.ibb.co/n3YYZt7/Captura-de-Tela-2021-04-03-s-21-39-55.png) |
+| :---------------------------------------------------------------------: | :---------------------------------------------------------------------: |
 
-![](https://i.ibb.co/cNmZcdQ/Captura-de-Tela-2021-03-14-s-16-44-21.png)    |   ![](https://i.ibb.co/0rKC5VJ/Captura-de-Tela-2021-03-14-s-16-46-33.png)|
-:---------------------------------------:|:--------------------------------------:|
 
 ## Sumário
 
@@ -14,6 +14,7 @@ app mobile de filmes
 - [Iniciar a Aplicação](#iniciar-a-aplicacao)
 
 ## Estrutura do projeto
+
 A estrutura do projeto segue a idéia de divisão do código por feature e não por temas.
 
 Abaixo uma explicação da árvore de documentos do projeto:
@@ -38,8 +39,8 @@ Abaixo uma explicação da árvore de documentos do projeto:
 │   ├── service - Serviços gerais do app (atualização do app, integrações, etc.);
 │   ├── navigation - Dados de navegação do app.
 │   │
-│   │   
-│   │   
+│   │
+│   │
 │   └── store - Todo o setup da store do projeto;
 │       ├── reducers - configuração dos reducers gerais do projeto.
 │       ├── configureStore - Configurações da store.
@@ -53,7 +54,9 @@ Abaixo uma explicação da árvore de documentos do projeto:
 ├── package.json
 └── README.md
 ```
+
 ## Iniciar a Aplicação
+
 Rode os comandos seguintes para clonar o projeto e baixar suas dependências:
 
 ```
@@ -67,6 +70,7 @@ yarn android
 ```
 
 Crie um arquivo .env e em seguida adicione sua KEY
+
 ```
 API_URL=https://api.themoviedb.org
 API_SECRET=<YOUR SECRET KEY>
