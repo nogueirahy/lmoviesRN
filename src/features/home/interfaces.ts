@@ -1,7 +1,7 @@
 import { ApiOkResponse } from "apisauce";
 
 interface IResponseData {
-  results: object;
+  results: object[];
   total_pages: string;
 }
 

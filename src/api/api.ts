@@ -31,7 +31,13 @@ const getDetailMovie = (id: number) =>
   api.get(`/3/movie/${id}`, {
     api_key,
     language: "en-US",
-    append_to_response: "recommendations",
+    append_to_response: "similar,videos",
+  });
+
+const getSimilarMovie = (id: number) =>
+  api.get(`/3/movie/${id}/similar`, {
+    api_key,
+    language: "en-US",
   });
 
 /* Series */
@@ -42,10 +48,27 @@ const getTvPopular = (page: number) =>
     page,
   });
 
+const getTvTopRated = (page: number) =>
+  api.get(`3/tv/top_rated`, {
+    api_key,
+    language: "en-US",
+    page,
+  });
+
+const getTvDetails = (id: number) =>
+  api.get(`3/tv/${id}`, {
+    api_key,
+    language: "en-US",
+    append_to_response: "similar,videos",
+  });
+
 export default {
   getUpcoming,
   getPopular,
   getTopRated,
   getDetailMovie,
+  getSimilarMovie,
   getTvPopular,
+  getTvTopRated,
+  getTvDetails,
 };

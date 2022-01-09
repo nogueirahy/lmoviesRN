@@ -8,9 +8,9 @@ interface IProps {
   onPress: () => void;
 }
 
-const CardMovie: React.FC<IProps> = ({ imageUrl, voteAverage, onPress }) => (
-  <Card elevation={4} style={styles.container} onPress={onPress}>
-    <Card.Cover source={{ uri: imageUrl }} style={{ height: 190 }} />
+const CardMovie = ({ imageUrl, voteAverage, onPress }: IProps) => (
+  <Card style={styles.container} onPress={onPress}>
+    <Card.Cover source={{ uri: imageUrl }} style={{width: 130}} />
     {voteAverage !== 0 && (
       <Chip style={styles.chip} theme={themeChip} icon="star" disabled>
         {voteAverage}

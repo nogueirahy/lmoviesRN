@@ -1,45 +1,65 @@
-import React from 'react';
-import { View, ImageBackground } from 'react-native';
+import React from "react";
+import { View, ImageBackground } from "react-native";
+import WebView from "react-native-webview";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { Title, Subheading } from "react-native-paper";
+import { DetailHeaderStyle } from "./styles";
 
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Title, Subheading } from 'react-native-paper';
-import { DetailHeaderStyle } from './styles';
+interface IProps {
+  title: string;
+  voteAverage: number;
+  videos: object[];
+  backdropUrl: string;
+}
 
-function DetailHeader({
-  title = '',
-  voteAverage = 0,
-  voteCount = 0,
-  backdropUrl = null,
-}) {
+const DetailHeader: React.FC<IProps> = ({
+  title,
+  voteAverage,
+  videos,
+  backdropUrl,
+}) => {
+  const hasTrailer = Boolean(
+    Array.isArray(videos?.results) && videos?.results.length
+  );
+
   return (
     <>
-      <ImageBackground
-        source={{ uri: backdropUrl }}
-        style={DetailHeaderStyle.imageBackground}
-      />
+      {hasTrailer ? (
+        <View>
+          <WebView
+            originWhitelist={["*"]}
+            source={{
+              uri: `http://www.youtube.com/embed/${videos?.results[0]?.key}`,
+            }}
+            style={{
+              width: "100%",
+              height: 250,
+            }}
+          />
+        </View>
+      ) : (
+        <ImageBackground
+          source={{ uri: backdropUrl }}
+          style={DetailHeaderStyle.imageBackground}
+        />
+      )}
       <View style={DetailHeaderStyle.contentContainer}>
         <Title style={DetailHeaderStyle.title}>{title}</Title>
-        <View style={DetailHeaderStyle.subTitleContainer}>
-          <MaterialCommunityIcons name="star" size={18} color="yellow" />
-          <Subheading
-            style={
-              DetailHeaderStyle.subTitleText
-            }>{`${voteAverage}/10  AVG.`}</Subheading>
-        </View>
-        <View style={DetailHeaderStyle.subTitleContainer}>
-          <MaterialCommunityIcons
-            name="vote-outline"
-            size={18}
-            color="#e0f2f1"
-          />
-          <Subheading
-            style={
-              DetailHeaderStyle.subTitleText
-            }>{`${voteCount} Votes`}</Subheading>
-        </View>
+        {Boolean(voteAverage) && (
+          <View style={DetailHeaderStyle.subTitleContainer}>
+            <MaterialCommunityIcons
+              name="thumbs-up-down"
+              size={20}
+              color="white"
+            />
+            <Subheading style={DetailHeaderStyle.subTitleText}>
+              {`${voteAverage * 10}%`}
+            </Subheading>
+          </View>
+        )}
       </View>
     </>
   );
-}
+};
 
 export default DetailHeader;

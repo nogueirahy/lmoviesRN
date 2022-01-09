@@ -4,11 +4,11 @@ import { color } from "../../../../config/theme";
 
 export default StyleSheet.create({
   title: {
-    paddingLeft: 12,
-    letterSpacing: 0.15,
-    fontWeight: "500",
-    paddingVertical: 16,
-  },
+    marginLeft: 16,
+    marginBottom: 12,
+    padding: 16,
+    fontWeight: 'bold',
+ },
   contentFlatlist: {
     justifyContent: "space-evenly",
     paddingLeft: 16,

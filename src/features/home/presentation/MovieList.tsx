@@ -1,11 +1,10 @@
 import React from "react";
-import { FlatList } from "react-native";
-
-import { Title } from "react-native-paper";
-
-import { momentHelper, themoviedbHelper } from "../../../lib";
+import { FlatList, View } from "react-native";
+import { Subheading } from "react-native-paper";
+import { themoviedbHelper } from "../../../lib";
 import { CardMovie } from "../../../components";
-import { HomeStyle } from "./styles";
+import { HomeStyle } from "../containers/styles";
+
 interface IProps {
   title: string;
   data: Array<any>; // TODO add type
@@ -13,28 +12,19 @@ interface IProps {
   onPress: (id: string) => void;
 }
 
-const MovieListContainer: React.FC<IProps> = ({
+const MovieList: React.FC<IProps> = ({
   title,
   data = [],
   nextPage,
   onPress,
 }) => {
   const renderItem = (item) => {
-    const {
-      id,
-      voteAverage,
-      title: movieTitle,
-      releaseDate,
-      posterUrl,
-    } = themoviedbHelper.normalizeData(item);
+    const { id, voteAverage, posterUrl } = themoviedbHelper.normalizeData(item);
 
-    const releaseDateFormated = momentHelper.formatDate(releaseDate);
     return (
       <CardMovie
-        title={movieTitle}
         imageUrl={posterUrl}
         voteAverage={voteAverage}
-        releaseDate={releaseDateFormated}
         onPress={() => onPress(id)}
       />
     );
@@ -42,7 +32,7 @@ const MovieListContainer: React.FC<IProps> = ({
 
   return (
     <>
-      <Title style={HomeStyle.title}>{title}</Title>
+      <Subheading style={HomeStyle.title}>{title}</Subheading>
       <FlatList
         contentContainerStyle={HomeStyle.contentFlatlist}
         data={data}
@@ -58,4 +48,4 @@ const MovieListContainer: React.FC<IProps> = ({
   );
 };
 
-export default MovieListContainer;
+export default MovieList;

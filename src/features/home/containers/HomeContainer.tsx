@@ -4,9 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { Container } from "../../../components";
 import { useNextPage } from "../../../hooks";
-import { MovieActionCreators } from "../ducks";
-import MovieList from "./MovieListContainer";
-import { HomeStyle } from "./styles";
+import { MovieActionCreators, MovieDetailActionCreators } from "../ducks";
+import MovieList from "../presentation/MovieList";
 
 const HomeContainer: React.FC = () => {
   const { navigate } = useNavigation();
@@ -20,6 +19,8 @@ const HomeContainer: React.FC = () => {
     topRatedTotalPages,
     tvPopularData,
     tvPopularTotalPages,
+    tvTopRatedData,
+    tvTopRatedTotalPages,
   } = useSelector((state) => state.movie);
 
   const upcomingNextPage = useNextPage({
@@ -42,9 +43,29 @@ const HomeContainer: React.FC = () => {
     totalPages: tvPopularTotalPages,
   });
 
-  const doNavigateToDetails = (id: string) => {
-    dispatch(MovieActionCreators.selectedMovie(id));
-    navigate("Details");
+  const tvTopRatedNextPage = useNextPage({
+    action: MovieActionCreators.tvTopRatedRequest,
+    totalPages: tvTopRatedTotalPages,
+  });
+
+  const doNavigateToMovieDetails = (value: string) => {
+    const requestDetail = (id: string) => {
+      dispatch(MovieActionCreators.selectedMovie(id));
+      dispatch(MovieDetailActionCreators.movieDetailRequest());
+    };
+
+    requestDetail(value);
+    navigate("Details", { requestDetail });
+  };
+
+  const doNavigateToTvDetails = (value: string) => {
+    const requestDetail = (id: string) => {
+      dispatch(MovieActionCreators.selectedMovie(id));
+      dispatch(MovieDetailActionCreators.tvDetailRequest());
+    };
+
+    requestDetail(value);
+    navigate("Details", { requestDetail });
   };
 
   React.useEffect(() => {
@@ -53,30 +74,37 @@ const HomeContainer: React.FC = () => {
 
   return (
     <Container>
-      <ScrollView style={HomeStyle.container}>
+      <ScrollView>
         <MovieList
-          title="Upcoming Movies"
+          title="UPCOMING MOVIES"
           data={upcomingData}
           nextPage={upcomingNextPage}
-          onPress={doNavigateToDetails}
+          onPress={doNavigateToMovieDetails}
         />
         <MovieList
-          title="Popular Movie"
+          title="POPULAR MOVIES"
           data={popularData}
           nextPage={popularNextPage}
-          onPress={doNavigateToDetails}
+          onPress={doNavigateToMovieDetails}
         />
         <MovieList
-          title="Top Rated Movie"
+          title="TOP RATED MOVIES"
           data={topRatedData}
           nextPage={topRatedNextPage}
-          onPress={doNavigateToDetails}
+          onPress={doNavigateToMovieDetails}
         />
         <MovieList
-          title="Popular Series"
+          title="TV POPULAR"
           data={tvPopularData}
           nextPage={tvPopularNextPage}
-          onPress={() => undefined /* TODO create series details */}
+          onPress={doNavigateToTvDetails}
+        />
+
+        <MovieList
+          title="TV TOP RATED"
+          data={tvTopRatedData}
+          nextPage={tvTopRatedNextPage}
+          onPress={doNavigateToTvDetails}
         />
       </ScrollView>
     </Container>

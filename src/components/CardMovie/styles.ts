@@ -4,7 +4,6 @@ export default StyleSheet.create({
   container: {
     marginHorizontal: 12,
     marginBottom: 8,
-    width: 125,
   },
   chip: {
     position: "absolute",
